@@ -36,9 +36,9 @@ const footerLinks = [
 ]
 
 const socialIcons = [
-    { icon: <Github />, url: 'https://github.com/Karthigaiselvam-R-official', label: 'GitHub' },
-    { icon: <LinkedIn />, url: 'https://www.linkedin.com/in/karthigaiselvam-r-7b9197258/', label: 'LinkedIn' },
-    { icon: <Mail />, url: 'mailto:karthigaiselvamr.cs2022@gmail.com', label: 'Email' },
+    { icon: <Github />, url: 'https://github.com/KingshukChatterjee007', label: 'GitHub' },
+    { icon: <LinkedIn />, url: 'https://www.linkedin.com/in/kingshuk-chatterjee', label: 'LinkedIn' },
+    { icon: <Mail />, url: 'mailto:kingshuk.chatterjee770@gmail.com', label: 'Email' },
 ]
 
 function Footer() {
@@ -51,12 +51,12 @@ function Footer() {
                     {/* Logo & Description */}
                     <div className={styles.footerBrand}>
                         <a href="#home" className={styles.logo}>
-                            <span className="gradient-text">K</span>arthigaiselvam
-                            <span className={styles.logoAccent}>.R</span>
+                            <span className="gradient-text">K</span>ingshuk{' '}
+                            <span className={styles.logoAccent}>C</span>hatterjee
                         </a>
                         <p className={styles.tagline}>
-                            Security Researcher & Software Developer<br />
-                            Chennai Institute of Technology
+                            Software Developer & UI/Systems Designer<br />
+                            KIIT University
                         </p>
                     </div>
 
@@ -95,7 +95,7 @@ function Footer() {
                 {/* Bottom */}
                 <div className={styles.footerBottom}>
                     <p className={styles.copyright}>
-                        © {currentYear} Karthigaiselvam R. All rights reserved.
+                        © {currentYear} Kingshuk Chatterjee. All rights reserved.
                     </p>
                     <p className={styles.madeWith}>
                         Crafted with passion & purpose

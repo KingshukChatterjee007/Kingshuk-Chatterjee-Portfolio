@@ -4,7 +4,7 @@ import { useRef, useState, useEffect } from 'react'
 import Toast from '../Toast/Toast'
 import styles from './Contact.module.css'
 
-// ... existing icons (Github, LinkedIn, Mail, Phone, Send, MessageCircle) ...
+// SVG Icons
 const Github = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
@@ -24,12 +24,6 @@ const Mail = () => (
     </svg>
 )
 
-const Phone = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-    </svg>
-)
-
 const Send = () => (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <line x1="22" y1="2" x2="11" y2="13" />
@@ -43,40 +37,41 @@ const MessageCircle = () => (
     </svg>
 )
 
+// YOUR UPDATED LINKS
 const socialLinks = [
     {
         name: 'GitHub',
-        url: 'https://github.com/Karthigaiselvam-R-official',
+        url: 'https://github.com/KingshukChatterjee007',
         icon: <Github />,
         color: 'primary'
     },
     {
         name: 'LinkedIn',
-        url: 'https://www.linkedin.com/in/karthigaiselvam-r-7b9197258/',
+        url: 'https://www.linkedin.com/in/kingshuk-chatterjee', // Update this if your LinkedIn URL is different
         icon: <LinkedIn />,
         color: 'secondary'
     },
     {
         name: 'Email',
-        url: 'mailto:karthigaiselvamr.cs2022@gmail.com',
+        url: 'mailto:kingshuk.chatterjee770@gmail.com',
         icon: <Mail />,
         color: 'accent'
     },
 ]
 
 const languages = [
-    "வாங்க வேலை செய்வோம்", // Tamil - shorter
-    "साथ मिलकर काम करें", // Hindi - shorter
-    "Trabajemos Juntos", // Spanish
-    "Travaillons Ensemble", // French
-    "Zusammenarbeiten!", // German - shorter
-    "一緒に働こう", // Japanese - shorter
-    "함께 하자", // Korean - shorter
-    "Работаем вместе", // Russian - shorter
-    "一起工作吧", // Chinese - shorter
-    "Lavoriamo Insieme", // Italian - NEW
-    "Vamos Trabalhar", // Portuguese - NEW
-    "Let's Work Together" // English (Last one)
+    "வாங்க வேலை செய்வோம்",
+    "साथ मिलकर काम करें",
+    "Trabajemos Juntos",
+    "Travaillons Ensemble",
+    "Zusammenarbeiten!",
+    "一緒に働こう",
+    "함께 하자",
+    "Работаем вместе",
+    "一起工作吧",
+    "Lavoriamo Insieme",
+    "Vamos Trabalhar",
+    "Let's Work Together"
 ]
 
 function Contact() {
@@ -88,20 +83,18 @@ function Contact() {
     const [toast, setToast] = useState({ isVisible: false, message: '', type: 'success' })
     const [currentLangIndex, setCurrentLangIndex] = useState(0)
 
-    // Continuous language cycling animation
     useEffect(() => {
         if (!isInView) return
 
         const interval = setInterval(() => {
             setCurrentLangIndex(prev => {
                 const next = prev + 1
-                // Loop back to 0 after reaching the end
                 if (next >= languages.length) {
-                    return 0 // Restart from beginning
+                    return 0
                 }
                 return next
             })
-        }, currentLangIndex === languages.length - 1 ? 3000 : 250) // Pause 3s on English, 250ms otherwise
+        }, currentLangIndex === languages.length - 1 ? 3000 : 250)
 
         return () => clearInterval(interval)
     }, [isInView, currentLangIndex])
@@ -118,11 +111,12 @@ function Contact() {
         e.preventDefault()
         setIsSubmitting(true)
 
+
         emailjs.sendForm(
-            'service_9z9ogh7',
-            'template_schoo5j',
+            'service_87gkhnq',
+            'template_k8qq6rr',
             formRef.current,
-            'tu8byCu5xNqBawxIB'
+            'W9tXcj0qHEaRr2tGo'
         )
             .then((result) => {
                 showToast('Message sent successfully! I will get back to you soon.', 'success')
@@ -184,7 +178,6 @@ function Contact() {
                                         style={{
                                             display: 'inline-block',
                                             whiteSpace: 'nowrap',
-                                            // Reduce font size for longer languages
                                             fontSize: [0, 1, 3, 7].includes(currentLangIndex) ? '0.7em' : '1em'
                                         }}
                                     >
@@ -195,16 +188,14 @@ function Contact() {
                         </div>
 
                         <p className={styles.description}>
-                            I'm currently available for internships, freelance work, and full-time opportunities.
-                            Whether you need a security assessment, want to collaborate on a project,
-                            or just want to connect - feel free to reach out!
+                            I’m currently open to internships, freelance, and full-time opportunities. I focus on building real, impactful solutions rather than just prototypes, with a strong emphasis on execution, scalability, and clean design. If you’re looking for someone who can take ideas beyond concepts and turn them into working products that deliver results, let’s connect.
                         </p>
 
                         <div className={styles.contactDetails}>
                             <div className={styles.detailItem}>
                                 <Mail />
-                                <a href="mailto:karthigaiselvamr.cs2022@gmail.com">
-                                    karthigaiselvamr.cs2022@gmail.com
+                                <a href="mailto:kingshuk.chatterjee770@gmail.com">
+                                    kingshuk.chatterjee770@gmail.com
                                 </a>
                             </div>
                         </div>
@@ -221,7 +212,6 @@ function Contact() {
                                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                                     transition={{ delay: 0.3 + index * 0.1 }}
                                     whileHover={{ scale: 1.02, x: 5 }}
-                                    aria-label={`Visit my ${link.name} profile`}
                                 >
                                     <span className={styles.socialIcon}>{link.icon}</span>
                                     <span className={styles.socialName}>{link.name}</span>

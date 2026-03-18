@@ -6,7 +6,6 @@ import styles from './App.module.css'
 
 // Lazy Load heavy components below the fold
 const About = lazy(() => import('./components/About/About'))
-const AchievementCarousel = lazy(() => import('./components/AchievementCarousel/AchievementCarousel'))
 const Experience = lazy(() => import('./components/Experience/Experience'))
 const Skills = lazy(() => import('./components/Skills/Skills'))
 const Projects = lazy(() => import('./components/Projects/Projects'))
@@ -44,7 +43,6 @@ function App() {
                 {/* Defer loading of non-critical sections */}
                 <Suspense fallback={<div style={{ height: '100px' }}></div>}>
                     <About />
-                    <AchievementCarousel />
                     <Experience />
                     <Skills />
                     <Projects />

@@ -5,7 +5,7 @@ import styles from './Projects.module.css'
 // SVG Icons
 const Github = () => (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
     </svg>
 )
 
@@ -43,25 +43,17 @@ const Loader = () => (
     </svg>
 )
 
-// GitHub Config
-const GITHUB_USERNAME = 'Karthigaiselvam-R-official'
+// GitHub Config - CHANGED TO YOUR USERNAME
+const GITHUB_USERNAME = 'KingshukChatterjee007'
 // GitHub Token for 5000 requests/hour (set in .env.local as VITE_GITHUB_TOKEN)
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN || ''
 
-// Custom descriptions for known projects
+// Custom descriptions for known projects based on your resume
 const projectDescriptions = {
-    'AsusTufFanControl_Linux': 'A powerful system control utility for ASUS TUF and ROG laptops on Linux. Features advanced Fan Control, Battery Health, and Aura Sync RGB.',
-    'Vulnerability_Scanner': 'Automated security scanning tool for web applications. Detects SQLi, XSS, CSRF, and SSRF vulnerabilities.',
-    '403-bypass3r': 'Advanced script to bypass 403 Forbidden errors during penetration testing and bug bounty hunting.',
-    'Smart_Attendance': 'Face recognition based attendance system using Python and OpenCV. Efficient and automated.',
-    'Land_Registry_Using_BlockChain': 'Blockchain-based land registry system built with Solidity and Web3.js.',
-}
-
-// Custom images for known projects
-const projectImages = {
-    'AsusTufFanControl_Linux': 'https://raw.githubusercontent.com/Karthigaiselvam-R-official/AsusTufFanControl_Linux/main/resources/SystemInfo.png',
-    '403-bypass3r': 'https://raw.githubusercontent.com/Karthigaiselvam-R-official/403-bypass3r/main/Pasted%20image.png',
-    'Smart_Attendance': 'https://raw.githubusercontent.com/Karthigaiselvam-R-official/Smart_Attendance/main/Screenshot%202024-10-06%20194055.png',
+    'KrownFrame': 'Warframe-themed AI assistant using Next.js with responsive UI and integrated assistant features.',
+    'fin_model': 'Machine learning earnings forecasting model using NLP sentiment analysis and financial indicators.',
+    'Sys_Logger': 'System logging platform. Led and developed the complete frontend architecture with responsive dashboards.',
+    'Kingshuk-Chatterjee-Portfolio': 'My personal portfolio website built with React, Vite, and Framer Motion.',
 }
 
 // Language colors for GitHub
@@ -79,6 +71,8 @@ const getLanguageColor = (language) => {
         'Go': '#00ADD8',
         'Rust': '#dea584',
         'Java': '#b07219',
+        'Jupyter Notebook': '#DA5B0B',
+        'CSS': '#563d7c'
     }
     return colors[language] || '#8892a0'
 }
@@ -158,7 +152,7 @@ function Projects() {
                 }
 
                 const response = await fetch(
-                    `https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`,
+                    `https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner`,
                     { headers }
                 )
 
@@ -172,7 +166,7 @@ function Projects() {
                 const allRepos = await response.json()
 
                 // Filter out forks
-                const filteredRepos = allRepos.filter(repo => !repo.fork)
+                const filteredRepos = allRepos
 
 
                 // Fetch README for each repo to extract ALL images for carousel
@@ -236,19 +230,13 @@ function Projects() {
     }, [])
 
     // Calculate scroll transform
-    // Card width = 420px, gap = 60px, so each card takes ~480px
-    // We want to scroll from 0% to -(100% - viewportWidth/totalWidth)
-    // For reliable scrolling, we calculate based on number of cards
     const cardCount = repos.length
 
     // Track active index based on scroll
     const currentIndex = useTransform(scrollYProgress, [0, 1], [0, Math.max(0, cardCount - 1)])
 
-    // Simple direct tracking - each scroll position maps to exactly one card
-    // Using Math.floor ensures every card index is hit as scroll progresses
     useEffect(() => {
         const unsubscribe = currentIndex.on('change', (latest) => {
-            // Floor ensures we don't skip - we stay on a card until fully past it
             const newIndex = Math.max(0, Math.min(Math.floor(latest + 0.5), cardCount - 1))
             setActiveIndex(newIndex)
         })
@@ -295,7 +283,7 @@ function Projects() {
                             <span className="gradient-text">Featured Project Vault</span>
                         </h2>
                         <p className="section-subtitle">
-                            Security tools and applications - fetched live from GitHub
+                            Applications & tools - fetched live from GitHub
                             {loading && <Loader />}
                             {error && <span style={{ color: '#ff5555', marginLeft: '10px' }}>Error: {error}</span>}
                         </p>

@@ -3,7 +3,6 @@ import { useRef } from 'react'
 import styles from './About.module.css'
 
 // SVG Icons
-// SVG Icons
 const Target = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10" />
@@ -19,12 +18,6 @@ const Award = () => (
     </svg>
 )
 
-const Shield = () => (
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-    </svg>
-)
-
 const Code = () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <polyline points="16 18 22 12 16 6" />
@@ -32,36 +25,26 @@ const Code = () => (
     </svg>
 )
 
-const Download = () => (
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-        <polyline points="7 10 12 15 17 10" />
-        <line x1="12" y1="15" x2="12" y2="3" />
-    </svg>
-)
-
-
 const highlights = [
-    {
-        icon: <Target />,
-        title: 'Problem Solver',
-        description: '990+ LeetCode problems solved',
-        color: 'primary'
-    },
-    {
-        icon: <Shield />,
-        title: 'Security Expert',
-        description: 'Pen testing & vulnerability research',
-        color: 'accent'
-    },
     {
         icon: <Code />,
         title: 'Software Developer',
-        description: 'Python, C++, JavaScript, Qt',
+        description: 'React, Flutter, Python, Node.js',
+        color: 'primary'
+    },
+    {
+        icon: <Target />,
+        title: 'UI/Systems Designer',
+        description: 'Figma, Prototyping, User Experience',
+        color: 'accent'
+    },
+    {
+        icon: <Award />,
+        title: 'AI & Research',
+        description: 'Predictive Modeling & Published Research',
         color: 'warning'
     }
 ]
-
 
 function About() {
     const ref = useRef(null)
@@ -99,12 +82,11 @@ function About() {
                                 </span>
                                 <br /><br />
                                 <span className={styles.outputSection}>
-                                    <span className={styles.outputKey}>Name:</span> Karthigaiselvam R<br />
-                                    <span className={styles.outputKey}>Role:</span> Security Researcher<br />
-                                    <span className={styles.outputKey}>Education:</span> B.E. CSE (Cyber Security)<br />
-                                    <span className={styles.outputKey}>College:</span> Chennai Institute of Technology<br />
-                                    <span className={styles.outputKey}>CGPA:</span> 9.05 / 10<br />
-                                    <span className={styles.outputKey}>Batch:</span> 2022 - 2026<br />
+                                    <span className={styles.outputKey}>Name:</span> Kingshuk Chatterjee<br />
+                                    <span className={styles.outputKey}>Role:</span> Software Developer & Designer<br />
+                                    <span className={styles.outputKey}>Education:</span> B.Tech Computer Science<br />
+                                    <span className={styles.outputKey}>University:</span> KIIT University<br />
+
                                 </span>
                                 <br />
                                 <span className="terminal-line">
@@ -113,23 +95,15 @@ function About() {
                                 </span>
                                 <br /><br />
                                 <span className="terminal-output">
-                                    "Security is not a product,<br />
-                                    but a process."<br />
-                                    — Bruce Schneier
+                                    "Design is not just what it<br />
+                                    looks like and feels like.<br />
+                                    Design is how it works."<br />
+                                    — Steve Jobs
                                 </span>
                             </div>
                         </div>
 
-                        {/* Experience Badge */}
-                        <motion.div
-                            className={styles.expBadge}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                            transition={{ delay: 0.6 }}
-                        >
-                            <span className={styles.expNumber}>3+</span>
-                            <span className={styles.expLabel}>Industry<br />Internships</span>
-                        </motion.div>
+
                     </motion.div>
 
                     {/* Content Side */}
@@ -141,11 +115,11 @@ function About() {
                     >
                         <div className="section-header" style={{ textAlign: 'center', marginBottom: '12px' }}>
                             <span className="section-tag">
-                                <Shield />
+                                <Code />
                                 About Me
                             </span>
                             <h2 className="section-title">
-                                <span className="gradient-text">Security Researcher &<br />Software Developer</span>
+                                <span className="gradient-text">Developer &<br />UI/Systems Designer</span>
                             </h2>
                         </div>
 
@@ -156,7 +130,7 @@ function About() {
                             transition={{ delay: 0.5 }}
                         >
                             <p className={styles.bio}>
-                                I'm Karthigaiselvam R — a developer with a security-first mindset. Pursuing B.E. CSE (Cyber Security) at Chennai Institute of Technology with 9.05 CGPA. Completed 5 industry internships at Palo Alto Networks, RecruitNxt Technologies, THECYBERHOST, Learnflu & AirosSpace R&D — building expertise across mobile pentesting, cloud security & threat intelligence.
+                                I am a Computer Science undergraduate at KIIT University with experience in full-stack development, machine learning, and user-focused design. I have built scalable applications using technologies such as React, Flutter, Node.js, and TensorFlow, and developed machine learning models including XGBoost, CNNs, and LSTMs. My work spans AI-powered wearable systems, financial forecasting models, and platforms integrating edge and cloud technologies. I am particularly interested in applying AI and software engineering to build efficient, impactful, and well-designed solutions.
                             </p>
                         </motion.div>
 
@@ -182,20 +156,6 @@ function About() {
                             ))}
                         </div>
 
-                        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '8px' }}>
-                            <motion.a
-                                href="https://drive.google.com/file/d/1lXWJv1ttyhQlEEeKlDJYr1b7A33tFwye/view"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="btn btn-primary"
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                aria-label="Download Full Resume"
-                            >
-                                <Download />
-                                Download Resume
-                            </motion.a>
-                        </div>
                     </motion.div>
                 </motion.div>
 
@@ -205,5 +165,3 @@ function About() {
 }
 
 export default About
-
-
