@@ -9,19 +9,19 @@ const skillCategories = [
     {
         id: 'security',
         label: 'Cyber Security',
-        color: '#7b61ff',
+        color: '#ffaa00',
         skills: ['Pentesting', 'Web App Security', 'Network Security', 'Malware Analysis', 'Reverse Engineering', 'Burp Suite', 'Metasploit', 'Nmap', 'Wireshark', 'Nessus']
     },
     {
         id: 'dev',
         label: 'Development',
-        color: '#00d4ff',
+        color: '#ff8800',
         skills: ['Python', 'C++', 'Go', 'Bash', 'JavaScript', 'React', 'Node.js', 'SQL', 'Solidity']
     },
     {
         id: 'ops',
         label: 'Ops & Tools',
-        color: '#e811ff',
+        color: '#ffd700',
         skills: ['Linux', 'Git', 'Docker', 'Risk Management', 'Incident Response']
     }
 ]

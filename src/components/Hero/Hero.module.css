@@ -118,7 +118,7 @@
 .firstName {
     display: inline-block;
     background: linear-gradient(to right, #ffd700, #ffaa00);
-    /* Cyan to Green */
+    /* Amber to Gold Gradient */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -128,7 +128,7 @@
 .lastName {
     display: inline-block;
     background: var(--gradient-cyber);
-    /* Purple/Multi */
+    /* Amber/Gold Accent */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -310,7 +310,7 @@
 }
 
 .quoteText {
-    color: rgba(123, 97, 255, 0.9);
+    color: var(--primary);
     text-shadow: 0 0 10px rgba(255, 170, 0, 0.3);
 }
 
@@ -369,14 +369,14 @@
 }
 
 .glitchText::before {
-    color: #ff0040;
+    color: var(--secondary);
     animation: glitchBefore 3s infinite;
     clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
     transform: translateX(-2px);
 }
 
 .glitchText::after {
-    color: #00ffff;
+    color: var(--primary);
     animation: glitchAfter 2s infinite;
     clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
     transform: translateX(2px);
@@ -486,10 +486,10 @@
     bottom: -10px;
     width: 6px;
     height: 6px;
-    background: radial-gradient(circle, rgba(123, 97, 255, 0.8), transparent);
+    background: radial-gradient(circle, rgba(255, 170, 0, 0.8), transparent);
     border-radius: 50%;
     animation: particleFloat 4s ease-in-out infinite;
-    box-shadow: 0 0 10px rgba(123, 97, 255, 0.5);
+    box-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
 }
 
 .particle:nth-child(odd) {
@@ -499,8 +499,8 @@
 }
 
 .particle:nth-child(3n) {
-    background: radial-gradient(circle, rgba(0, 200, 255, 0.6), transparent);
-    box-shadow: 0 0 8px rgba(0, 200, 255, 0.4);
+    background: radial-gradient(circle, rgba(255, 170, 0, 0.6), transparent);
+    box-shadow: 0 0 8px rgba(255, 170, 0, 0.4);
 }
 
 @keyframes particleFloat {
@@ -547,7 +547,7 @@
     position: relative;
     padding: 2px;
     border-radius: 12px;
-    background: linear-gradient(90deg, #ffaa00, #00c8ff, #ff00c8, #ffaa00);
+    background: linear-gradient(90deg, #ffaa00, #ff6600, #ffd700, #ffaa00);
     background-size: 300% 100%;
     animation: neonBorderFlow 4s linear infinite;
     box-shadow:
@@ -563,7 +563,7 @@
     right: -2px;
     bottom: -2px;
     border-radius: 14px;
-    background: linear-gradient(90deg, #ffaa00, #00c8ff, #ff00c8, #ffaa00);
+    background: linear-gradient(90deg, #ffaa00, #ff6600, #ffd700, #ffaa00);
     background-size: 300% 100%;
     animation: neonBorderFlow 4s linear infinite;
     z-index: -1;
@@ -682,7 +682,7 @@
     position: relative;
     padding: 2px;
     border-radius: 12px;
-    background: linear-gradient(90deg, #ffaa00, #00c8ff, #ff00c8, #ffaa00);
+    background: linear-gradient(90deg, #ffaa00, #ff6600, #ffd700, #ffaa00);
     background-size: 300% 100%;
     animation: comboNeonFlow 4s linear infinite;
     box-shadow:
@@ -698,7 +698,7 @@
     right: -2px;
     bottom: -2px;
     border-radius: 14px;
-    background: linear-gradient(90deg, #ffaa00, #00c8ff, #ff00c8, #ffaa00);
+    background: linear-gradient(90deg, #ffaa00, #ff6600, #ffd700, #ffaa00);
     background-size: 300% 100%;
     animation: comboNeonFlow 4s linear infinite;
     z-index: -1;
@@ -766,7 +766,7 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.9rem;
     line-height: 1.9;
-    color: rgba(123, 97, 255, 0.9);
+    color: var(--primary);
     margin: 0;
     position: absolute;
     top: 24px;

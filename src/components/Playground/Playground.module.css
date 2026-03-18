@@ -19,7 +19,7 @@
 }
 
 .highlight {
-    background: linear-gradient(90deg, #ff00cc, #333399);
+    background: linear-gradient(90deg, #ffaa00, #ff6600);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -63,11 +63,11 @@
 
 /* Colors */
 .blue {
-    border-top: 2px solid #00d2ff;
+    border-top: 2px solid #ffaa00;
 }
 
 .green {
-    border-top: 2px solid #7b61ff;
+    border-top: 2px solid #ffaa00;
 }
 
 .red {
@@ -75,7 +75,7 @@
 }
 
 .cyan {
-    border-top: 2px solid #00ffff;
+    border-top: 2px solid #ffcc00;
 }
 
 .yellow {
@@ -87,11 +87,11 @@
 }
 
 .purple {
-    border-top: 2px solid #bd00ff;
+    border-top: 2px solid #ff6600;
 }
 
 .pink {
-    border-top: 2px solid #ff00cc;
+    border-top: 2px solid #ffcc00;
 }
 
 .gray {

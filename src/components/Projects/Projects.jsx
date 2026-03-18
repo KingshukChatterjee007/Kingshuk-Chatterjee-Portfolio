@@ -107,6 +107,7 @@ function Projects() {
                 name: 'Krishi Sahyogi',
                 customDescription: 'An AI-powered agricultural assistant platform for local farmers. (Private Industry Project)',
                 html_url: '#contact',
+                isPrivate: true,
                 language: 'Python/Flutter',
                 stargazers_count: 'Private',
                 forks_count: 'Private',
@@ -151,6 +152,7 @@ function Projects() {
                 name: 'AI-Integration-in-Wearables-for-Clot-Monitoring',
                 customDescription: 'AI-Integration in wearables for real-time blood clot risk assessment and health monitoring.',
                 html_url: '#contact',
+                isPrivate: true,
                 language: 'Embedded AI',
                 stargazers_count: 'R&D',
                 forks_count: 'Private',
@@ -162,6 +164,7 @@ function Projects() {
                 name: 'Advanced-Derivatives-Pricing',
                 customDescription: 'Advanced derivatives pricing engine using quantitative financial models and risk analysis.',
                 html_url: '#contact',
+                isPrivate: true,
                 language: 'C++/Python',
                 stargazers_count: 'Expert',
                 forks_count: 'Private',
@@ -272,15 +275,24 @@ function Projects() {
                                         </div>
                                         <span className={styles.cardPath}>~/{repo.name.toLowerCase()}</span>
                                         <div className={styles.cardLinks}>
-                                            <a
-                                                href={repo.html_url}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className={styles.cardLink}
-                                                aria-label={`View ${repo.name} on GitHub`}
-                                            >
-                                                <Github />
-                                            </a>
+                                            {!repo.isPrivate ? (
+                                                <a
+                                                    href={repo.html_url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className={styles.cardLink}
+                                                    aria-label={`View ${repo.name} on GitHub`}
+                                                >
+                                                    <Github />
+                                                </a>
+                                            ) : (
+                                                <span className={styles.cardLink} title="Private Repository">
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                                    </svg>
+                                                </span>
+                                            )}
                                         </div>
                                     </div>
 
@@ -300,7 +312,7 @@ function Projects() {
                                     </div>
 
                                     {/* Card Footer */}
-                                    <div className={styles.cardFooter}>
+                                    <div className={`${styles.cardFooter} ${repo.isPrivate ? styles.footerPrivate : ''}`}>
                                         <div className={styles.projectMeta}>
                                             <span className={styles.language}>
                                                 <span
@@ -318,16 +330,26 @@ function Projects() {
                                                 {repo.forks_count}
                                             </span>
                                         </div>
-                                        <a
-                                            href={repo.html_url}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className={styles.viewProject}
-                                            aria-label={`View source code for ${repo.name}`}
-                                        >
-                                            View Code
-                                            <ArrowRight />
-                                        </a>
+                                        {!repo.isPrivate ? (
+                                            <a
+                                                href={repo.html_url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={styles.viewProject}
+                                                aria-label={`View source code for ${repo.name}`}
+                                            >
+                                                View Code
+                                                <ArrowRight />
+                                            </a>
+                                        ) : (
+                                            <div className={styles.privateBadge}>
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className={styles.privateIcon}>
+                                                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                                </svg>
+                                                <span className={styles.privateText}>Private Repo</span>
+                                            </div>
+                                        )}
                                     </div>
                                 </motion.article>
                             )

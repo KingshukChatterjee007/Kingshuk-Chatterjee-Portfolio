@@ -115,7 +115,7 @@ function Footer() {
                 <div className={styles.footerBottom}>
                     <div className={styles.copyrightWrapper}>
                         <p className={styles.copyright}>
-                            © {currentYear} K. CHATTERJEE | SECTOR-7G
+                            © {currentYear} Kingshuk CHATTERJEE
                         </p>
                     </div>
                     <p className={styles.madeWith}>

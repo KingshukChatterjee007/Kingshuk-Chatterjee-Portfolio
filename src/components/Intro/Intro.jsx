@@ -113,9 +113,9 @@ const Intro = ({ onComplete }) => {
                         Designing & Machine Learning Engineer
                     </motion.p>
 
-                    {/* Pulsing Dot */}
+                    {/* Singularity Loader */}
                     <motion.div
-                        className={styles.dot}
+                        className={styles.singularity}
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 1.0, duration: 0.4, type: 'spring' }}

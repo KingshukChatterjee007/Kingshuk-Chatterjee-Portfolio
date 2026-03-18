@@ -64,7 +64,7 @@ const experiences = [
         date: "Jan 2026 - Feb 2026",
         skills: ["Landing Pages", "Web Design", "Education Platforms"],
         icon: <Briefcase />,
-        color: '#7b61ff'
+        color: '#ff8800'
     },
     {
         id: 2,
@@ -73,7 +73,7 @@ const experiences = [
         date: "2023 - Present",
         skills: ["Prototyping", "Solar EV Systems", "Waste Management Software"],
         icon: <Target />,
-        color: '#00d4ff'
+        color: '#ffcc00'
     },
     {
         id: 3,
@@ -82,7 +82,37 @@ const experiences = [
         date: "Nov 2024 - Jan 2025",
         skills: ["Industrial Networking", "Cisco Protocols", "Network Architecture"],
         icon: <Shield />,
-        color: '#bd00ff'
+        color: '#ff6600'
+    },
+    {
+        id: 4,
+        role: "Research Paper Accepted",
+        company: "Elsevier Procedia Computer Science",
+        description: "\"Stock Earnings Forecasting via News Factor Analyzing Model\" Selected for ICMLDE 2025",
+        date: "2025",
+        skills: ["Machine Learning", "News Factor Analysis", "Research"],
+        icon: <Code />,
+        color: '#ffd700'
+    },
+    {
+        id: 5,
+        role: "Nirman 4.0 Hackathon",
+        company: "Silicon University",
+        description: "Qualified for Round 2 – National Level Hackathon",
+        date: "2024",
+        skills: ["Problem Solving", "Rapid Prototyping", "Teamwork"],
+        icon: <Target />,
+        color: '#ff8800'
+    },
+    {
+        id: 6,
+        role: "Active KSRC Member",
+        company: "KIIT Student Research Centre",
+        description: "Contributing and collaborating for over 2 years",
+        date: "2023 - Present",
+        skills: ["Community", "Research", "Collaboration"],
+        icon: <Briefcase />,
+        color: '#ffaa00'
     }
 ]
 
@@ -184,6 +214,7 @@ const WaveCard = ({ exp, index, totalItems, scrollYProgress, onCardClick }) => {
                 </div>
                 <h3 className={styles.cardRole}>{exp.role}</h3>
                 <p className={styles.cardCompany}>{exp.company}</p>
+                {exp.description && <p className={styles.cardDescription}>{exp.description}</p>}
                 <div className={styles.cardSkills}>
                     {exp.skills.slice(0, 3).map((skill, i) => (
                         <span key={i} className={styles.skillTag} style={{ borderColor: `${exp.color}40` }}>
@@ -267,7 +298,7 @@ const Experience = () => {
                         Career Path
                     </span>
                     <h2 className={styles.title}>
-                        <span className="gradient-text">Professional Experience</span>
+                        <span className="gradient-text">Personal Experience & Achievements</span>
                     </h2>
                 </div>
 
