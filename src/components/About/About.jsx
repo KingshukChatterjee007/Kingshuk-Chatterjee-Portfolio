@@ -77,7 +77,7 @@ function About() {
                             <div className="terminal-body">
                                 <span className="terminal-line">
                                     <span className="terminal-prompt">$ </span>
-                                    <span className="terminal-command">cat profile.txt</span>
+                                    <span className="terminal-command">About</span>
                                 </span>
                                 <br /><br />
                                 <span className={styles.outputSection}>
@@ -85,19 +85,20 @@ function About() {
                                     <span className={styles.outputKey}>Role:</span> Software Developer & Designer<br />
                                     <span className={styles.outputKey}>Education:</span> B.Tech Computer Science<br />
                                     <span className={styles.outputKey}>University:</span> KIIT University<br />
+                                    <span className={styles.outputKey}>Resume:</span> <a href="/Resume.pdf" download="Kingshuk_Chatterjee_Resume.pdf" className={styles.terminalLink}>Download PDF</a><br />
 
                                 </span>
                                 <br />
                                 <span className="terminal-line">
                                     <span className="terminal-prompt">$ </span>
-                                    <span className="terminal-command">cat quote.txt</span>
+                                    <span className="terminal-command">-$read-me</span>
                                 </span>
                                 <br /><br />
                                 <span className="terminal-output">
-                                    "Design is not just what it<br />
-                                    looks like and feels like.<br />
-                                    Design is how it works."<br />
-                                    — Steve Jobs
+                                    "Actives mic<br />
+                                    i wish for knowledge <br />
+                                    Dying sound"<br />
+                                    — Phasmophobia
                                 </span>
                             </div>
                         </div>
