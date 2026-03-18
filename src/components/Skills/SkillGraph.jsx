@@ -8,58 +8,66 @@ const Fingerprint = () => (
     </svg>
 )
 
-// Skill Data Structure
+// Updated Skill Data Structure from your Resume
 const skillData = {
     id: 'core',
-    label: 'Karthigaiselvam',
+    label: 'Kingshuk Chatterjee',
     type: 'core',
     children: [
         {
-            id: 'security',
-            label: 'Cyber Security',
+            id: 'languages',
+            label: 'Languages',
             type: 'category',
             color: '#00ff88',
             children: [
-                { id: 'pentest', label: 'Pentesting', type: 'skill' },
-                { id: 'websec', label: 'Web App Security', type: 'skill' },
-                { id: 'network', label: 'Network Security', type: 'skill' },
-                { id: 'malware', label: 'Malware Analysis', type: 'skill' },
-                { id: 'reveng', label: 'Reverse Engineering', type: 'skill' },
-                { id: 'burp', label: 'Burp Suite', type: 'skill' },
-                { id: 'meta', label: 'Metasploit', type: 'skill' },
-                { id: 'nmap', label: 'Nmap', type: 'skill' },
-                { id: 'wireshark', label: 'Wireshark', type: 'skill' },
-                { id: 'nessus', label: 'Nessus', type: 'skill' },
+                { id: 'python', label: 'Python', type: 'skill' },
+                { id: 'js', label: 'JavaScript', type: 'skill' },
+                { id: 'c', label: 'C', type: 'skill' },
+                { id: 'html5', label: 'HTML5', type: 'skill' },
+                { id: 'css3', label: 'CSS3', type: 'skill' },
+                { id: 'sql', label: 'SQL', type: 'skill' },
             ]
         },
         {
-            id: 'dev',
-            label: 'Development',
+            id: 'frameworks',
+            label: 'Frameworks',
             type: 'category',
             color: '#00d4ff',
             children: [
-                { id: 'python', label: 'Python', type: 'skill' },
-                { id: 'cpp', label: 'C++', type: 'skill' },
-                { id: 'go', label: 'Go', type: 'skill' },
-                { id: 'bash', label: 'Bash', type: 'skill' },
-                { id: 'js', label: 'JavaScript', type: 'skill' },
+                { id: 'flutter', label: 'Flutter', type: 'skill' },
                 { id: 'react', label: 'React', type: 'skill' },
                 { id: 'node', label: 'Node.js', type: 'skill' },
-                { id: 'sql', label: 'SQL', type: 'skill' },
-                { id: 'solidity', label: 'Solidity', type: 'skill' },
+                { id: 'express', label: 'Express', type: 'skill' },
+                { id: 'flask', label: 'Flask', type: 'skill' },
+                { id: 'tf', label: 'TensorFlow', type: 'skill' },
+                { id: 'pandas', label: 'Pandas', type: 'skill' },
+                { id: 'opencv', label: 'OpenCV', type: 'skill' },
             ]
         },
         {
-            id: 'ops',
-            label: 'Ops & Tools',
+            id: 'ml',
+            label: 'Machine Learning',
             type: 'category',
             color: '#bd00ff',
             children: [
-                { id: 'linux', label: 'Linux', type: 'skill' },
-                { id: 'git', label: 'Git', type: 'skill' },
-                { id: 'docker', label: 'Docker', type: 'skill' },
-                { id: 'risk', label: 'Risk Management', type: 'skill' },
-                { id: 'incident', label: 'Incident Response', type: 'skill' },
+                { id: 'xgboost', label: 'XGBoost', type: 'skill' },
+                { id: 'cnn', label: 'CNN', type: 'skill' },
+                { id: 'lstm', label: 'LSTM', type: 'skill' },
+                { id: 'feateng', label: 'Feature Eng.', type: 'skill' },
+                { id: 'timeseries', label: 'Time-Series', type: 'skill' },
+                { id: 'modeleval', label: 'Model Eval', type: 'skill' },
+            ]
+        },
+        {
+            id: 'tools',
+            label: 'Tools & Design',
+            type: 'category',
+            color: '#ffaa00',
+            children: [
+                { id: 'figma', label: 'Figma', type: 'skill' },
+                { id: 'adobe', label: 'Adobe Suite', type: 'skill' },
+                { id: 'blender', label: 'Blender', type: 'skill' },
+                { id: 'powerbi', label: 'Power BI', type: 'skill' },
             ]
         }
     ]
@@ -78,7 +86,7 @@ const SkillGraph = () => {
         const catCount = skillData.children.length
         skillData.children.forEach((cat, i) => {
             const angle = (i / catCount) * 2 * Math.PI - Math.PI / 2
-            const radius = 25 // 25% from center
+            const radius = 22 // Adjusted from 25 to fit 4 categories better
             const x = 50 + Math.cos(angle) * radius * 1.5 // Aspect ratio correction
             const y = 50 + Math.sin(angle) * radius
 
@@ -91,22 +99,11 @@ const SkillGraph = () => {
             const startAngle = angle - angleSpan / 2
 
             cat.children.forEach((skill, j) => {
-                // Fix: Custom spread for each category based on density/preference
-                const isSecurity = cat.id === 'security'
-                const isOps = cat.id === 'ops'
+                // Smooth spread for 4 quadrants
+                let spreadFactor = 0.8
+                let startOffset = 0.1
 
-                let spreadFactor = 0.7 // Default (Dev)
-                let startOffset = 0.15 // Default offset
-
-                if (isSecurity) {
-                    spreadFactor = 1.03 // Wide for Security
-                    startOffset = -0.01
-                } else if (isOps) {
-                    spreadFactor = 0.65 // Reduce gap for Ops (User request)
-                    startOffset = 0.17 // Center the tighter cluster
-                }
-
-                const skillAngle = startAngle + (j / (skillCount - 1)) * angleSpan * spreadFactor + (angleSpan * startOffset)
+                const skillAngle = startAngle + (j / Math.max(1, skillCount - 1)) * angleSpan * spreadFactor + (angleSpan * startOffset)
                 const skillRadius = 45 // 45% from center
                 const sx = 50 + Math.cos(skillAngle) * skillRadius * 1.5
                 const sy = 50 + Math.sin(skillAngle) * skillRadius

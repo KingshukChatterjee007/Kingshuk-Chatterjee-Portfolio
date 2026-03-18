@@ -20,50 +20,41 @@ const CloseIcon = () => (
     </svg>
 )
 
-// Achievements Data
 const achievements = [
     {
         id: 0,
-        title: 'Hack4Purpose 2024',
-        place: 'Top 100 Winning Teams',
-        prize: 'National Level Recognition',
-        description: 'Developed Eco - G bricks, an Environment Sustainability solution creating eco-friendly bricks from plastic waste to reduce carbon emissions. Competed against 8500+ registered teams nationwide.',
+        title: 'Research Paper Accepted',
+        place: 'ICMLDE 2025',
+        prize: 'Elsevier Procedia',
+        description: '"Stock Earnings Forecasting via News Factor Analyzing Model" accepted in Elsevier Procedia Computer Science. Selected for presentation at the ICMLDE 2025 conference.',
         images: [
-            '/images/hack4purpose_1.png',
-            '/images/hack4purpose_2.png',
-            '/images/hack4purpose_3.png',
-            '/images/hack4purpose_4.png'
+            '/images/image.png'
         ],
-        link: 'https://www.linkedin.com/posts/karthigaiselvam-r-7b9197258_hello-everyone-i-am-thrilled-to-activity-7240367648004300802-xcs7',
+        link: 'https://github.com/KingshukChatterjee007',
         color: '#00ff88'
     },
     {
         id: 1,
-        title: 'IIIT-Delhi Pitch-Cafe 7.0',
-        place: 'First Runner-up (2nd)',
-        prize: '₹20,000 Cash Prize',
-        description: 'Pitched Eco - G bricks, an innovative solution utilizing plastic waste for eco-friendly construction. Recognized for its business viability and environmental impact.',
+        title: 'Nirman 4.0 Hackathon',
+        place: 'Silicon University',
+        prize: 'Round 2 Qualifier',
+        description: 'Successfully qualified for Round 2 in the competitive Nirman 4.0 Hackathon held at Silicon University.',
         images: [
-            '/images/pitchcafe_1.png',
-            '/images/pitchcafe_2.png',
-            '/images/pitchcafe_3.png'
+            '/images/image.png'
         ],
-        link: 'https://www.linkedin.com/posts/karthigaiselvam-r-7b9197258_im-pleased-to-announce-that-our-team-achieved-activity-7240364228069441537-H7Wm',
+        link: 'https://github.com/KingshukChatterjee007',
         color: '#00d4ff'
     },
     {
         id: 2,
-        title: 'Y2E Ideathon',
-        place: 'First Runner-up (2nd)',
-        prize: '₹10,000 Cash Prize',
-        description: 'Presented Eco - G bricks as a sustainable entrepreneurial venture. Demonstrated how transforming plastic waste into construction material creates a scalable impact.',
+        title: 'KIIT Software & Research',
+        place: 'KSRC',
+        prize: 'Active Member',
+        description: 'Active KSRC Member for over 2 years, contributing to technical community growth, research projects, and software development initiatives.',
         images: [
-            '/images/y2e_1.png',
-            '/images/y2e_2.png',
-            '/images/y2e_3.png',
-            '/images/y2e_4.png'
+            '/images/image.png'
         ],
-        link: 'https://www.linkedin.com/posts/karthigaiselvam-r-7b9197258_entrepreneurship-cybersecurity-innovation-activity-7240362391954186240--oqp',
+        link: 'https://github.com/KingshukChatterjee007',
         color: '#bd00ff'
     }
 ]
@@ -77,7 +68,6 @@ const AchievementCarousel = () => {
     const currentAchievement = achievements[activeAchievement]
     const currentImages = currentAchievement.images
 
-    // Auto-rotate achievements every 6 seconds (pause when lightbox open)
     useEffect(() => {
         if (lightboxOpen) return
         const interval = setInterval(() => {
@@ -87,7 +77,6 @@ const AchievementCarousel = () => {
         return () => clearInterval(interval)
     }, [lightboxOpen])
 
-    // Auto-rotate images within current achievement every 2 seconds
     useEffect(() => {
         if (lightboxOpen) return
         const interval = setInterval(() => {
@@ -104,7 +93,6 @@ const AchievementCarousel = () => {
     const closeLightbox = () => {
         setLightboxOpen(false)
         setLightboxImage('')
-        // Immediately move to next image when closing
         setImageIndex((prev) => (prev + 1) % currentImages.length)
     }
 
@@ -153,7 +141,6 @@ const AchievementCarousel = () => {
                 </motion.h2>
 
                 <div className={styles.carouselWrapper}>
-                    {/* Left Content */}
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={`left-${activeAchievement}`}
@@ -173,7 +160,6 @@ const AchievementCarousel = () => {
                         </motion.div>
                     </AnimatePresence>
 
-                    {/* 3D Carousel for current achievement's images */}
                     <div className={styles.carousel3D}>
                         <AnimatePresence mode="sync">
                             {currentImages.map((image, index) => (
@@ -213,7 +199,6 @@ const AchievementCarousel = () => {
                             ))}
                         </AnimatePresence>
 
-                        {/* Image Dot Indicators */}
                         <div className={styles.imageIndicators}>
                             {currentImages.map((_, index) => (
                                 <button
@@ -233,7 +218,6 @@ const AchievementCarousel = () => {
                         </div>
                     </div>
 
-                    {/* Right Content */}
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={`right-${activeAchievement}`}
@@ -259,13 +243,12 @@ const AchievementCarousel = () => {
                                 style={{ borderColor: currentAchievement.color, color: currentAchievement.color }}
                                 aria-label={`View ${currentAchievement.title} details on LinkedIn`}
                             >
-                                VIEW ON LINKEDIN
+                                VIEW ON GITHUB
                             </motion.a>
                         </motion.div>
                     </AnimatePresence>
                 </div>
 
-                {/* Achievement Navigation Dots */}
                 <div className={styles.achievementIndicators}>
                     {achievements.map((achievement, index) => (
                         <button
@@ -287,7 +270,6 @@ const AchievementCarousel = () => {
                 </div>
             </div>
 
-            {/* Lightbox Modal */}
             <AnimatePresence>
                 {lightboxOpen && (
                     <motion.div

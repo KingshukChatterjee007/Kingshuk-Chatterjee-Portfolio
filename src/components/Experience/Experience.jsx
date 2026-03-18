@@ -50,126 +50,97 @@ const CloseIcon = () => (
 const experiences = [
     {
         id: 0,
-        role: "Cybersecurity Intern",
-        company: "Learnflu",
-        date: "Jan 2025 - May 2025",
-        skills: ["Defensive Security", "Threat Intelligence", "SOC Analysis", "Incident Response"],
-        image: "/images/Karthigaiselvam RLearnflu.png",
-        icon: <Briefcase />,
+        role: "UI Developer",
+        company: "Knead to Bake",
+        date: "2024 - Present",
+        skills: ["UI Development", "API Integration", "Frontend"],
+        icon: <Code />,
         color: '#ffaa00'
     },
     {
         id: 1,
-        role: "Cybersecurity Virtual Intern",
-        company: "Palo Alto Networks",
-        date: "Jul 2024 – Sep 2024",
-        skills: ["Network Security", "Cloud Security", "SOC", "Prisma Cloud"],
-        link: "https://www.linkedin.com/posts/karthigaiselvam-r-7b9197258_cybersecurity-paloaltonetworks-virtualinternship-activity-7251896001270042624-LQEE",
-        icon: <Shield />,
+        role: "Frontend Developer (Freelance)",
+        company: "Self-Employed",
+        date: "Jan 2026 - Feb 2026",
+        skills: ["Landing Pages", "Web Design", "Education Platforms"],
+        icon: <Briefcase />,
         color: '#00ff88'
     },
     {
         id: 2,
-        role: "Cyber Security Project Lead",
-        company: "RecuritNxt Technologies",
-        date: "Nov 2023 – May 2024",
-        skills: ["Project Management", "VAPT", "Team Leadership"],
-        link: "https://www.linkedin.com/posts/karthigaiselvam-r-7b9197258_cybersecurity-projectmanagement-teamwork-activity-7240375012514275330-64AV",
+        role: "UI/Systems Designer",
+        company: "KIIT Research Centre",
+        date: "2023 - Present",
+        skills: ["Prototyping", "Solar EV Systems", "Waste Management Software"],
         icon: <Target />,
         color: '#00d4ff'
     },
     {
         id: 3,
-        role: "Android Penetration Tester",
-        company: "THECYBERHOST Pvt. Ltd.",
-        date: "Aug 2023 – Sep 2023",
-        skills: ["MobSF", "Burp Suite", "ADB"],
-        link: "https://www.linkedin.com/posts/karthigaiselvam-r-7b9197258_android-cybersecurity-vapt-activity-7240356634386931712-h20e",
+        role: "Network Intern",
+        company: "Indian Oil Corporation Ltd (IOCL)",
+        date: "Nov 2024 - Jan 2025",
+        skills: ["Industrial Networking", "Cisco Protocols", "Network Architecture"],
         icon: <Shield />,
         color: '#bd00ff'
-    },
-    {
-        id: 4,
-        role: "Software Developer",
-        company: "AirosSpace R&D Pvt. Ltd.",
-        date: "Mar 2023 – Jun 2023",
-        skills: ["Python", "C++", "Qt6/QML"],
-        link: "https://www.linkedin.com/posts/karthigaiselvam-r-7b9197258_airospace-softwaredevelopment-qt-activity-7240355243736113152-v9ce",
-        icon: <Code />,
-        color: '#ff6b6b'
     }
 ]
 
-// --- WAVE PHYSICS CONSTANTS ---
-const WAVE_AMPLITUDE_X = 450      // Horizontal swing width
-const ROTATION_INTENSITY_Y = 50   // Y-axis rotation degrees
-const ROTATION_INTENSITY_Z = 8    // Z-axis tilt degrees
-const SPACING_FACTOR = 1.2        // Spacing between cards in scroll units
+const WAVE_AMPLITUDE_X = 450
+const ROTATION_INTENSITY_Y = 50
+const ROTATION_INTENSITY_Z = 8
+const SPACING_FACTOR = 1.2
 
-/**
- * WAVE CARD COMPONENT
- * Physics-based animation with vertical climb, horizontal oscillation
- */
 const WaveCard = ({ exp, index, totalItems, scrollYProgress, onCardClick }) => {
     const Icon = exp.icon?.type || Shield
     const lastIndex = totalItems - 1
     const totalTravelDistance = lastIndex * SPACING_FACTOR
 
-    // Phase: represents card's position relative to scroll "camera"
     const phase = useTransform(scrollYProgress, (val) => {
         const cameraPosition = val * totalTravelDistance
         const itemStartOffset = index * SPACING_FACTOR
         return cameraPosition - itemStartOffset
     })
 
-    // Y position: vertical climb with oscillating dip
     const y = useTransform(phase, (p) => {
         const climb = p * 120
         const dip = Math.abs(Math.sin(p)) * 80
         return -(climb - dip)
     })
 
-    // X position: horizontal wave oscillation
     const x = useTransform(phase, (p) => {
         return -Math.sin(p) * WAVE_AMPLITUDE_X
     })
 
-    // Scale: depth-based scaling (front = large, back = small)
     const scale = useTransform(phase, (p) => {
         const depth = Math.cos(p)
         return 0.55 + (depth + 1) * 0.45
     })
 
-    // RotateY: card rotation based on wave position
     const rotateY = useTransform(phase, (p) => {
         return Math.sin(p) * ROTATION_INTENSITY_Y
     })
 
-    // RotateZ: slight tilt
     const rotateZ = useTransform(phase, (p) => {
         return Math.sin(p) * -ROTATION_INTENSITY_Z
     })
 
-    // Opacity: fade distant cards
     const opacity = useTransform(phase, (p) => {
         const dist = Math.abs(p)
         if (dist > 4) return 0
         return 1 - (dist / 5)
     })
 
-    // Blur: sharp center focus
     const blur = useTransform(phase, (p) => {
         const dist = Math.abs(p)
         if (dist < 0.35) return 'blur(0px)'
         return `blur(${(dist - 0.35) * 6}px)`
     })
 
-    // Z-Index: layering
     const zIndex = useTransform(phase, (p) => {
         return 100 - Math.round(Math.abs(p) * 10)
     })
 
-    // Spring configs for smooth motion
     const springConfig = { damping: 18, stiffness: 80, mass: 0.3 }
     const springY = useSpring(y, springConfig)
     const springX = useSpring(x, springConfig)
@@ -198,13 +169,10 @@ const WaveCard = ({ exp, index, totalItems, scrollYProgress, onCardClick }) => {
             }}
             transition={{ duration: 0.3 }}
         >
-            {/* Card Glow */}
             <div
                 className={styles.cardGlow}
                 style={{ background: `linear-gradient(135deg, ${exp.color}30, transparent 60%)` }}
             />
-
-            {/* Card Content */}
             <div className={styles.cardContent}>
                 <div className={styles.cardTop}>
                     <div className={styles.cardIcon} style={{ color: exp.color, borderColor: `${exp.color}50` }}>
@@ -228,9 +196,6 @@ const WaveCard = ({ exp, index, totalItems, scrollYProgress, onCardClick }) => {
     )
 }
 
-/**
- * PARTICLE SYSTEM - Background ambiance
- */
 const ParticleSystem = () => {
     const particles = useMemo(() => {
         return Array.from({ length: 30 }).map((_, i) => ({
@@ -270,9 +235,6 @@ const ParticleSystem = () => {
     )
 }
 
-/**
- * MAIN EXPERIENCE COMPONENT
- */
 const Experience = () => {
     const containerRef = useRef(null)
     const [selectedImage, setSelectedImage] = useState(null)
@@ -282,7 +244,6 @@ const Experience = () => {
         offset: ['start start', 'end end']
     })
 
-    // Clamp and smooth the scroll progress
     const clampedProgress = useTransform(scrollYProgress, [0, 0.9], [0, 1])
     const smoothProgress = useSpring(clampedProgress, {
         damping: 15,
@@ -293,7 +254,6 @@ const Experience = () => {
     return (
         <section id="experience" className={styles.experienceWrapper} ref={containerRef}>
             <div className={styles.stickyContainer}>
-                {/* Background Effects */}
                 <div className={styles.backgroundEffects}>
                     <div className={styles.glowOrb1} />
                     <div className={styles.glowOrb2} />
@@ -301,7 +261,6 @@ const Experience = () => {
                     <ParticleSystem />
                 </div>
 
-                {/* Header */}
                 <div className={styles.sectionHeader}>
                     <span className={styles.tag}>
                         <Briefcase />
@@ -312,7 +271,6 @@ const Experience = () => {
                     </h2>
                 </div>
 
-                {/* Wave Cards Container */}
                 <div className={styles.waveContainer}>
                     {experiences.map((exp, index) => (
                         <WaveCard
@@ -332,7 +290,6 @@ const Experience = () => {
                     ))}
                 </div>
 
-                {/* Completion Indicator */}
                 <motion.div
                     className={styles.completionBadge}
                     style={{ opacity: useTransform(smoothProgress, [0.98, 1], [0, 1]) }}
@@ -340,7 +297,6 @@ const Experience = () => {
                     <Shield /> All Experience Viewed
                 </motion.div>
 
-                {/* Lightbox Modal */}
                 <AnimatePresence>
                     {selectedImage && (
                         <motion.div
@@ -366,7 +322,7 @@ const Experience = () => {
                                 </button>
                                 <img
                                     src={selectedImage}
-                                    alt="Internship Details"
+                                    alt="Experience Details"
                                     className={styles.lightboxImage}
                                 />
                             </motion.div>

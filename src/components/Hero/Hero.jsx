@@ -31,36 +31,19 @@ const Lock = () => (
 
 // Typewriter effect for roles
 const roles = [
-    "Security Researcher",
-    "Penetration Tester",
     "Software Developer",
-    "Cyber Security Enthusiast",
+    "UI/Systems Designer",
+    "AI Enthusiast",
+    "Frontend Developer",
 ]
 
-// Dynamic hero quotes - randomly selected on page load
+// Dynamic hero quotes
 const heroQuotes = [
-    `Developer by day, security researcher by obsession. I create elegant software while constantly questioning: "How could this be exploited?" — then I fix it before anyone else finds out.`,
-
-    `The best defense is knowing how to attack. I build software that creates — and break systems to understand their limits. A Security Researcher who codes with purpose and a Developer who thinks like an adversary.`,
-
-    `Code is poetry. Security is its shield. Crafting digital experiences that inspire confidence. I blend the art of software creation with the science of security — because great software deserves to be unbreakable.`,
-
-    `Heroes don't wait for vulnerabilities to be exploited. From the first line of code to the final deployment — I build with security in mind, defend with developer expertise, and protect what matters.`,
-
-    `In a world of vulnerabilities, I choose to be the solution. Driven by curiosity, guided by precision. I transform ideas into resilient applications and challenges into opportunities for better security.`,
-
-    `Every vulnerability I find today protects someone tomorrow. Born from curiosity, shaped by code. I'm a developer who asks "what if?" and a security researcher who answers "not on my watch."`,
-
-    `The line between creation and destruction is thin — I walk it with intention. Building systems that scale. Breaking assumptions that don't. A developer's heart with a hacker's instinct. Where innovation meets vigilance, that's where you'll find me.`,
-
-    `Some dream of a safer internet. I'm building it — one secure application at a time. Code is my canvas. Security is my signature. Together, they create experiences worth protecting.`,
-
-    `I am two minds in one — the builder who dreams and the breaker who tests those dreams. Developer, Researcher. Both voices in harmony. Building software that doesn't just run — it survives.`
+    `Designing intuitive interfaces by day, building robust systems by night. I create elegant software that solves real-world problems.`,
+    `Code is my canvas. UI is my gallery. Crafting digital experiences that inspire and perform seamlessly across the stack.`,
+    `From predicting blood clot risks with AI to building responsive web apps. I transform complex data into beautiful, accessible applications.`,
+    `A developer's logic with a designer's eye. Where innovation meets aesthetics, that's where you'll find me.`
 ]
-
-// ============================================
-// HOLOGRAPHIC CYBER TERMINAL - NEW DESIGN
-// ============================================
 
 // Animated typing terminal with real cursor
 const HoloTerminal = () => {
@@ -70,20 +53,19 @@ const HoloTerminal = () => {
     const [showCursor, setShowCursor] = useState(true)
 
     const codeLines = [
-        { text: '> Initializing security scan...', color: '#888', delay: 0 },
-        { text: '> Target: KingshukChatterjee.dev', color: '#00ff88', delay: 100 },
+        { text: '> Initializing workspace...', color: '#888', delay: 0 },
+        { text: '> Target: kingshukchatterjee.dev', color: '#00ff88', delay: 100 },
         { text: '', color: '#fff', delay: 50 },
-        { text: 'class SecurityResearcher:', color: '#ff79c6', delay: 80 },
+        { text: 'class Developer:', color: '#ff79c6', delay: 80 },
         { text: '    def __init__(self):', color: '#8be9fd', delay: 80 },
-        { text: '        self.name = "Kingshuk"', color: '#f1fa8c', delay: 60 },
-        { text: '        self.role = "Security Researcher"', color: '#f1fa8c', delay: 60 },
-        { text: '        self.status = "ACTIVE"', color: '#50fa7b', delay: 60 },
+        { text: '        self.name = "Kingshuk Chatterjee"', color: '#f1fa8c', delay: 60 },
+        { text: '        self.role = "Software Developer & Designer"', color: '#f1fa8c', delay: 60 },
+        { text: '        self.status = "BUILDING"', color: '#50fa7b', delay: 60 },
         { text: '', color: '#fff', delay: 50 },
-        { text: '> Scan complete. No vulnerabilities found.', color: '#00ff88', delay: 100 },
-        { text: '> System secured ✓', color: '#50fa7b', delay: 150 },
+        { text: '> Compilation complete. 0 Errors.', color: '#00ff88', delay: 100 },
+        { text: '> System ready ✓', color: '#50fa7b', delay: 150 },
     ]
 
-    // Cursor blink
     useEffect(() => {
         const cursorInterval = setInterval(() => {
             setShowCursor(prev => !prev)
@@ -91,19 +73,15 @@ const HoloTerminal = () => {
         return () => clearInterval(cursorInterval)
     }, [])
 
-    // Typing animation
     useEffect(() => {
         if (currentLine >= codeLines.length) return
-
         const line = codeLines[currentLine]
-
         if (currentChar < line.text.length) {
             const timeout = setTimeout(() => {
                 setCurrentChar(prev => prev + 1)
             }, 30 + Math.random() * 20)
             return () => clearTimeout(timeout)
         } else {
-            // Line complete, add to lines and move to next
             const timeout = setTimeout(() => {
                 setLines(prev => [...prev, { ...line, text: line.text }])
                 setCurrentLine(prev => prev + 1)
@@ -115,19 +93,12 @@ const HoloTerminal = () => {
 
     return (
         <div className={styles.holoTerminal}>
-            {/* Corner accents */}
             <div className={`${styles.cornerAccent} ${styles.topLeft}`} />
             <div className={`${styles.cornerAccent} ${styles.topRight}`} />
             <div className={`${styles.cornerAccent} ${styles.bottomLeft}`} />
             <div className={`${styles.cornerAccent} ${styles.bottomRight}`} />
-
-            {/* Scan lines */}
             <div className={styles.holoScanlines} />
-
-            {/* Glowing border */}
             <div className={styles.holoBorder} />
-
-            {/* Header */}
             <div className={styles.holoHeader}>
                 <div className={styles.holoHeaderLeft}>
                     <span className={styles.holoStatus} />
@@ -140,10 +111,7 @@ const HoloTerminal = () => {
                     </span>
                 </div>
             </div>
-
-            {/* Terminal body */}
             <div className={styles.holoBody}>
-                {/* Completed lines */}
                 {lines.map((line, i) => (
                     <motion.div
                         key={i}
@@ -156,8 +124,6 @@ const HoloTerminal = () => {
                         <span style={{ color: line.color }}>{line.text}</span>
                     </motion.div>
                 ))}
-
-                {/* Currently typing line */}
                 {currentLine < codeLines.length && (
                     <div className={styles.holoLine}>
                         <span className={styles.lineNumber}>
@@ -170,8 +136,6 @@ const HoloTerminal = () => {
                     </div>
                 )}
             </div>
-
-            {/* Footer status bar */}
             <div className={styles.holoFooter}>
                 <span className={styles.holoFooterItem}>
                     <span className={styles.pulsingDot} /> CONNECTED
@@ -183,11 +147,9 @@ const HoloTerminal = () => {
     )
 }
 
-// Radar/Network visualization behind terminal - FIXED VERSION
 const NetworkRadar = () => {
     return (
         <div className={styles.radarContainer}>
-            {/* Radar circles - wrapper for positioning, inner for animation */}
             {[1, 2, 3, 4].map((i) => (
                 <div
                     key={i}
@@ -199,30 +161,19 @@ const NetworkRadar = () => {
                 >
                     <motion.div
                         className={styles.radarCircleInner}
-                        animate={{
-                            opacity: [0.1, 0.3, 0.1],
-                        }}
-                        transition={{
-                            duration: 3,
-                            delay: i * 0.5,
-                            repeat: Infinity,
-                            ease: 'easeInOut'
-                        }}
+                        animate={{ opacity: [0.1, 0.3, 0.1] }}
+                        transition={{ duration: 3, delay: i * 0.5, repeat: Infinity, ease: 'easeInOut' }}
                     />
                 </div>
             ))}
-
-            {/* Radar sweep - use transform-origin instead */}
             <motion.div
                 className={styles.radarSweep}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
             />
-
-            {/* Network nodes - fixed positioning */}
             {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
                 const angle = (i / 8) * Math.PI * 2
-                const radius = 100 + i * 10 // Deterministic radius
+                const radius = 100 + i * 10
                 return (
                     <motion.div
                         key={i}
@@ -231,15 +182,8 @@ const NetworkRadar = () => {
                             left: `calc(50% + ${Math.cos(angle) * radius}px - 3px)`,
                             top: `calc(50% + ${Math.sin(angle) * radius}px - 3px)`,
                         }}
-                        animate={{
-                            opacity: [0.3, 1, 0.3],
-                        }}
-                        transition={{
-                            duration: 2 + i * 0.3,
-                            delay: i * 0.3,
-                            repeat: Infinity,
-                            ease: 'easeInOut'
-                        }}
+                        animate={{ opacity: [0.3, 1, 0.3] }}
+                        transition={{ duration: 2 + i * 0.3, delay: i * 0.3, repeat: Infinity, ease: 'easeInOut' }}
                     />
                 )
             })}
@@ -247,7 +191,6 @@ const NetworkRadar = () => {
     )
 }
 
-// Data stream effect
 const DataStream = () => {
     return (
         <div className={styles.dataStream}>
@@ -256,16 +199,8 @@ const DataStream = () => {
                     key={i}
                     className={styles.streamLine}
                     style={{ left: `${10 + i * 15}%` }}
-                    animate={{
-                        y: ['-100%', '100%'],
-                        opacity: [0, 1, 1, 0]
-                    }}
-                    transition={{
-                        duration: 2 + Math.random(),
-                        delay: i * 0.4,
-                        repeat: Infinity,
-                        ease: 'linear'
-                    }}
+                    animate={{ y: ['-100%', '100%'], opacity: [0, 1, 1, 0] }}
+                    transition={{ duration: 2 + Math.random(), delay: i * 0.4, repeat: Infinity, ease: 'linear' }}
                 />
             ))}
         </div>
@@ -278,15 +213,11 @@ function Hero() {
     const [isDeleting, setIsDeleting] = useState(false)
     const [githubStats, setGithubStats] = useState({ repos: 0, stars: 0 })
 
-    // Random quote selected once on page load
     const [quoteIndex] = useState(() => Math.floor(Math.random() * heroQuotes.length))
-
-    // Typewriter effect for quote (Option E)
     const [typedQuote, setTypedQuote] = useState('')
     const [quoteTypingComplete, setQuoteTypingComplete] = useState(false)
     const [typingStarted, setTypingStarted] = useState(false)
 
-    // Start typing after card animation completes (1s delay)
     useEffect(() => {
         const startDelay = setTimeout(() => {
             setTypingStarted(true)
@@ -294,14 +225,13 @@ function Hero() {
         return () => clearTimeout(startDelay)
     }, [])
 
-    // Typewriter animation
     useEffect(() => {
         if (!typingStarted) return
         const quote = heroQuotes[quoteIndex]
         if (typedQuote.length < quote.length) {
             const timeout = setTimeout(() => {
                 setTypedQuote(quote.slice(0, typedQuote.length + 1))
-            }, 25) // Speed: 25ms per character
+            }, 25)
             return () => clearTimeout(timeout)
         } else {
             setQuoteTypingComplete(true)
@@ -309,28 +239,20 @@ function Hero() {
     }, [typedQuote, quoteIndex, typingStarted])
 
     const firstName = "Kingshuk"
-    const lastName = "R"
+    const lastName = "Chatterjee"
 
-    // Fetch GitHub stats
     useEffect(() => {
         const fetchGitHubStats = async () => {
             try {
-                // Use Token if available to avoid Rate Limits (60 vs 5000 req/hr)
                 const token = import.meta.env.VITE_GITHUB_TOKEN
-                const headers = {
-                    'Accept': 'application/vnd.github.v3+json'
-                }
-                if (token) {
-                    headers['Authorization'] = `token ${token}`
-                }
+                const headers = { 'Accept': 'application/vnd.github.v3+json' }
+                if (token) headers['Authorization'] = `token ${token}`
 
-                const response = await fetch('https://api.github.com/users/Kingshukrox', { headers })
-
+                // Keep this updated to your actual github username if you want live stats
+                const response = await fetch('https://api.github.com/users/KingshukChatterjee007', { headers })
                 if (response.ok) {
                     const data = await response.json()
                     setGithubStats(prev => ({ ...prev, repos: data.public_repos }))
-                } else {
-                    console.error('GitHub API Error:', response.status)
                 }
             } catch (err) {
                 console.error('Error fetching GitHub stats:', err)
@@ -356,9 +278,7 @@ function Hero() {
 
         const timeout = setTimeout(() => {
             setDisplayText(prev =>
-                isDeleting
-                    ? prev.slice(0, -1)
-                    : currentRole.slice(0, prev.length + 1)
+                isDeleting ? prev.slice(0, -1) : currentRole.slice(0, prev.length + 1)
             )
         }, speed)
 
@@ -367,7 +287,6 @@ function Hero() {
 
     return (
         <section id="home" className={styles.hero}>
-            {/* Background Effects */}
             <div className={styles.matrixBg}></div>
             <div className={styles.glowOrb1}></div>
             <div className={styles.glowOrb2}></div>
@@ -380,7 +299,6 @@ function Hero() {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8 }}
                 >
-                    {/* Status Badge */}
                     <motion.div
                         className={styles.statusBadge}
                         initial={{ opacity: 0, y: 20 }}
@@ -391,7 +309,6 @@ function Hero() {
                         <span>Available for Work</span>
                     </motion.div>
 
-                    {/* Name */}
                     <motion.div
                         className={styles.nameWrapper}
                         initial={{ opacity: 0, x: -50 }}
@@ -404,7 +321,6 @@ function Hero() {
                         </h1>
                     </motion.div>
 
-                    {/* Typewriter Role */}
                     <motion.div
                         className={styles.roleContainer}
                         initial={{ opacity: 0 }}
@@ -416,7 +332,6 @@ function Hero() {
                         <span className={styles.cursor}></span>
                     </motion.div>
 
-                    {/* Description - COMBO: Neon Border + Typewriter + Glitch */}
                     <motion.div
                         className={styles.comboWrapper}
                         initial={{ opacity: 0, y: 20 }}
@@ -424,11 +339,9 @@ function Hero() {
                         transition={{ delay: 0.8 }}
                     >
                         <div className={styles.comboCard}>
-                            {/* Invisible placeholder to reserve full space */}
                             <p className={styles.comboPlaceholder} aria-hidden="true">
                                 {heroQuotes[quoteIndex]}
                             </p>
-                            {/* Visible typed text */}
                             <p
                                 className={`${styles.comboText} ${quoteTypingComplete ? styles.comboGlitch : ''}`}
                                 data-text={typedQuote}
@@ -439,7 +352,6 @@ function Hero() {
                         </div>
                     </motion.div>
 
-                    {/* CTA Buttons */}
                     <motion.div
                         className={styles.buttons}
                         initial={{ opacity: 0, y: 30 }}
@@ -467,7 +379,6 @@ function Hero() {
                         </motion.a>
                     </motion.div>
 
-                    {/* Stats */}
                     <motion.div
                         className={styles.stats}
                         initial={{ opacity: 0 }}
@@ -475,48 +386,34 @@ function Hero() {
                         transition={{ delay: 1.2 }}
                     >
                         <div className={styles.stat}>
-                            <span className={styles.statNumber}>9.05</span>
-                            <span className={styles.statLabel}>CGPA</span>
-                        </div>
-                        <div className={styles.statDivider}></div>
-                        <div className={styles.stat}>
-                            <span className={styles.statNumber}>990+</span>
-                            <span className={styles.statLabel}>LeetCode</span>
-                        </div>
-                        <div className={styles.statDivider}></div>
-                        <div className={styles.stat}>
                             <span className={styles.statNumber}>{githubStats.repos || '17'}+</span>
                             <span className={styles.statLabel}>GitHub Repos</span>
+                        </div>
+                        <div className={styles.statDivider}></div>
+                        <div className={styles.stat}>
+                            <span className={styles.statNumber}>2+</span>
+                            <span className={styles.statLabel}>Years KSRC Member</span>
                         </div>
                     </motion.div>
                 </motion.div>
 
-                {/* ====== NEW HOLOGRAPHIC TERMINAL VISUAL ====== */}
                 <motion.div
                     className={styles.heroVisual}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.5, duration: 0.8, type: 'spring' }}
                 >
-                    {/* Background radar effect */}
                     <NetworkRadar />
-
-                    {/* Data streams */}
                     <DataStream />
-
-                    {/* Main holographic terminal */}
                     <HoloTerminal />
 
-                    {/* === CREATIVE FLOATING ELEMENTS === */}
-
-                    {/* Floating Terminal Commands */}
                     <motion.div
                         className={`${styles.floatingCmd} ${styles.cmdTop}`}
                         initial={{ opacity: 1 }}
                         animate={{ y: [0, -3, 0] }}
                         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                     >
-                        $ nmap -sV
+                        $ npm run dev
                     </motion.div>
 
                     <motion.div
@@ -525,42 +422,36 @@ function Hero() {
                         animate={{ y: [0, 3, 0] }}
                         transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
                     >
-                        $ sudo ./exploit
+                        $ git push origin main
                     </motion.div>
 
-                    {/* Port Badge - Left Side */}
                     <motion.div
                         className={styles.portBadge}
                         initial={{ opacity: 1 }}
                         animate={{ y: [0, -2, 0] }}
                         transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
                     >
-                        <span className={styles.portLabel}>PORT</span>
-                        <span className={styles.portNumber}>443</span>
-                        <span className={styles.portStatus}>OPEN</span>
+                        <span className={styles.portLabel}>REACT</span>
+                        <span className={styles.portNumber}>UI</span>
+                        <span className={styles.portStatus}>ACTIVE</span>
                     </motion.div>
 
-
-
-                    {/* CVE Badge */}
                     <motion.div
                         className={styles.cveBadge}
                         animate={{
                             y: [-3, 3, -3],
                             boxShadow: [
-                                '0 0 15px rgba(255,0,100,0.3)',
-                                '0 0 25px rgba(255,0,100,0.5)',
-                                '0 0 15px rgba(255,0,100,0.3)'
+                                '0 0 15px rgba(0,212,255,0.3)',
+                                '0 0 25px rgba(0,212,255,0.5)',
+                                '0 0 15px rgba(0,212,255,0.3)'
                             ]
                         }}
                         transition={{ repeat: Infinity, duration: 3 }}
                     >
-                        <span className={styles.cveText}>CVE-2026</span>
+                        <span className={styles.cveText}>DEV-2026</span>
                     </motion.div>
 
-                    {/* Circuit Lines */}
                     <svg className={styles.circuitLines} viewBox="0 0 100 100">
-
                         <motion.circle
                             cx="180"
                             cy="-5"
