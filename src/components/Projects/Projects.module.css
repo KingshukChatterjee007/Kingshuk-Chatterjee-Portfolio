@@ -1,9 +1,8 @@
 /* Horizontal Scroll Wrapper - Large height for scroll-driven animation */
 .projectsWrapper {
     position: relative;
-    background: var(--bg-dark);
-    height: 1500vh;
-    /* Very large to prevent skipping cards during fast scroll */
+    background: transparent;
+    height: 200vh; /* Final radical reduction for tight scroll/no dead zones */
 }
 
 .stickyContainer {
@@ -12,6 +11,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
     overflow: hidden;
 }
@@ -61,8 +61,8 @@
 .activeCard {
     border: 2px solid var(--primary) !important;
     box-shadow:
-        0 0 40px rgba(0, 255, 136, 0.5),
-        0 0 80px rgba(0, 255, 136, 0.3),
+        0 0 40px rgba(123, 97, 255, 0.5),
+        0 0 80px rgba(123, 97, 255, 0.3),
         0 25px 50px rgba(0, 0, 0, 0.4) !important;
 }
 
@@ -245,7 +245,7 @@
 
 .tag {
     padding: 4px 10px;
-    background: rgba(0, 255, 136, 0.05);
+    background: rgba(123, 97, 255, 0.05);
     border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 0.7rem;

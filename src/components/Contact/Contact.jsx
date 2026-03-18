@@ -142,7 +142,6 @@ function Contact() {
                 type={toast.type}
                 onClose={closeToast}
             />
-            <div className="hex-grid"></div>
             <div className="container">
                 <motion.div
                     ref={ref}
@@ -170,10 +169,10 @@ function Contact() {
                                 <AnimatePresence mode="wait">
                                     <motion.span
                                         key={currentLangIndex}
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        exit={{ opacity: 0 }}
-                                        transition={{ duration: 0.05 }}
+                                        initial={{ opacity: 0, y: 8, filter: 'blur(1.5px)' }}
+                                        animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                                        exit={{ opacity: 0, y: -8, filter: 'blur(1.5px)' }}
+                                        transition={{ duration: 0.35, ease: [0.23, 1, 0.32, 1] }}
                                         className="gradient-text"
                                         style={{
                                             display: 'inline-block',

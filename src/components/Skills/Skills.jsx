@@ -9,7 +9,7 @@ const skillCategories = [
     {
         id: 'security',
         label: 'Cyber Security',
-        color: '#00ff88',
+        color: '#7b61ff',
         skills: ['Pentesting', 'Web App Security', 'Network Security', 'Malware Analysis', 'Reverse Engineering', 'Burp Suite', 'Metasploit', 'Nmap', 'Wireshark', 'Nessus']
     },
     {
@@ -21,7 +21,7 @@ const skillCategories = [
     {
         id: 'ops',
         label: 'Ops & Tools',
-        color: '#bd00ff',
+        color: '#e811ff',
         skills: ['Linux', 'Git', 'Docker', 'Risk Management', 'Incident Response']
     }
 ]
@@ -104,17 +104,7 @@ const Skills = () => {
                 </div>
             </div>
 
-            {/* Background ambiance */}
-            <div style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
-                background: 'radial-gradient(circle at 50% 50%, transparent 0%, #000 80%)',
-                pointerEvents: 'none',
-                zIndex: 1
-            }} />
+            {/* Background ambiance removed for full transparency */}
         </section>
     )
 }

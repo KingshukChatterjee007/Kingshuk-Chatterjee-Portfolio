@@ -16,8 +16,8 @@
     width: 100%;
     height: 100%;
     background:
-        radial-gradient(circle at 15% 50%, rgba(0, 255, 136, 0.03) 0%, transparent 25%),
-        radial-gradient(circle at 85% 30%, rgba(0, 212, 255, 0.03) 0%, transparent 25%);
+        radial-gradient(circle at 15% 50%, rgba(255, 170, 0, 0.03) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(255, 102, 0, 0.03) 0%, transparent 25%);
     pointer-events: none;
     z-index: 0;
 }
@@ -26,7 +26,7 @@
     position: absolute;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(0, 255, 136, 0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 170, 0, 0.08) 0%, transparent 70%);
     top: -200px;
     right: -100px;
     pointer-events: none;
@@ -38,7 +38,7 @@
     position: absolute;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(255, 102, 0, 0.06) 0%, transparent 70%);
     bottom: -100px;
     left: -150px;
     pointer-events: none;
@@ -77,14 +77,14 @@
     align-items: center;
     gap: 10px;
     padding: 8px 16px;
-    background: rgba(0, 255, 136, 0.05);
-    border: 1px solid rgba(0, 255, 136, 0.2);
+    background: rgba(255, 170, 0, 0.05);
+    border: 1px solid rgba(255, 170, 0, 0.2);
     border-radius: 50px;
     font-size: 0.85rem;
     color: var(--primary);
     margin-bottom: 24px;
     backdrop-filter: blur(5px);
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+    box-shadow: 0 0 20px rgba(255, 170, 0, 0.1);
 }
 
 .statusDot {
@@ -117,12 +117,12 @@
 /* Gradient Text for Name - NO WHITE */
 .firstName {
     display: inline-block;
-    background: linear-gradient(to right, #00d4ff, #00ff88);
+    background: linear-gradient(to right, #ffd700, #ffaa00);
     /* Cyan to Green */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.2));
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.2));
 }
 
 .lastName {
@@ -178,8 +178,8 @@
     max-width: 80%;
     position: relative;
     padding: 20px 24px;
-    background: linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 0, 0, 0.4) 100%);
-    border: 1px solid rgba(0, 255, 136, 0.15);
+    background: linear-gradient(135deg, rgba(255, 170, 0, 0.03) 0%, rgba(0, 0, 0, 0.4) 100%);
+    border: 1px solid rgba(255, 170, 0, 0.15);
     border-radius: 8px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -229,16 +229,16 @@
 
 /* Hover effects */
 .description:hover {
-    border-color: rgba(0, 255, 136, 0.4);
-    background: linear-gradient(135deg, rgba(0, 255, 136, 0.06) 0%, rgba(0, 0, 0, 0.5) 100%);
-    box-shadow: 0 0 30px rgba(0, 255, 136, 0.1), inset 0 0 20px rgba(0, 255, 136, 0.02);
+    border-color: rgba(255, 170, 0, 0.4);
+    background: linear-gradient(135deg, rgba(255, 170, 0, 0.06) 0%, rgba(0, 0, 0, 0.5) 100%);
+    box-shadow: 0 0 30px rgba(255, 170, 0, 0.1), inset 0 0 20px rgba(255, 170, 0, 0.02);
     color: var(--text-primary);
 }
 
 .highlight {
     color: var(--text-primary);
     font-weight: 600;
-    border-bottom: 1px solid rgba(0, 255, 136, 0.3);
+    border-bottom: 1px solid rgba(255, 170, 0, 0.3);
 }
 
 /* =============================================
@@ -249,11 +249,11 @@
     margin-bottom: 40px;
     margin-top: 12px;
     background: linear-gradient(180deg, rgba(20, 25, 30, 0.95) 0%, rgba(10, 15, 20, 0.98) 100%);
-    border: 1px solid rgba(0, 255, 136, 0.2);
+    border: 1px solid rgba(255, 170, 0, 0.2);
     border-radius: 10px;
     overflow: hidden;
     box-shadow:
-        0 0 40px rgba(0, 255, 136, 0.08),
+        0 0 40px rgba(255, 170, 0, 0.08),
         0 20px 60px rgba(0, 0, 0, 0.4),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
     position: relative;
@@ -266,7 +266,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, transparent 50%);
+    background: linear-gradient(135deg, rgba(255, 170, 0, 0.03) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -276,7 +276,7 @@
     gap: 8px;
     padding: 12px 16px;
     background: rgba(0, 0, 0, 0.4);
-    border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+    border-bottom: 1px solid rgba(255, 170, 0, 0.1);
 }
 
 .terminalDot {
@@ -299,7 +299,7 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.9rem;
     line-height: 1.8;
-    color: #00ff88;
+    color: #ffaa00;
     position: relative;
 }
 
@@ -310,12 +310,12 @@
 }
 
 .quoteText {
-    color: rgba(0, 255, 136, 0.9);
-    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    color: rgba(123, 97, 255, 0.9);
+    text-shadow: 0 0 10px rgba(255, 170, 0, 0.3);
 }
 
 .quoteCursor {
-    color: #00ff88;
+    color: #ffaa00;
     animation: cursorBlink 1s step-end infinite;
     margin-left: 2px;
 }
@@ -343,7 +343,7 @@
     position: relative;
     padding: 20px 24px;
     background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(255, 170, 0, 0.1);
     border-radius: 8px;
 }
 
@@ -466,7 +466,7 @@
     position: relative;
     padding: 24px;
     background: linear-gradient(135deg, rgba(0, 20, 15, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
-    border: 1px solid rgba(0, 255, 136, 0.15);
+    border: 1px solid rgba(123, 97, 255, 0.15);
     border-radius: 12px;
     overflow: hidden;
 }
@@ -486,10 +486,10 @@
     bottom: -10px;
     width: 6px;
     height: 6px;
-    background: radial-gradient(circle, rgba(0, 255, 136, 0.8), transparent);
+    background: radial-gradient(circle, rgba(123, 97, 255, 0.8), transparent);
     border-radius: 50%;
     animation: particleFloat 4s ease-in-out infinite;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+    box-shadow: 0 0 10px rgba(123, 97, 255, 0.5);
 }
 
 .particle:nth-child(odd) {
@@ -547,12 +547,12 @@
     position: relative;
     padding: 2px;
     border-radius: 12px;
-    background: linear-gradient(90deg, #00ff88, #00c8ff, #ff00c8, #00ff88);
+    background: linear-gradient(90deg, #ffaa00, #00c8ff, #ff00c8, #ffaa00);
     background-size: 300% 100%;
     animation: neonBorderFlow 4s linear infinite;
     box-shadow:
-        0 0 20px rgba(0, 255, 136, 0.3),
-        0 0 40px rgba(0, 255, 136, 0.1);
+        0 0 20px rgba(255, 170, 0, 0.3),
+        0 0 40px rgba(255, 170, 0, 0.1);
 }
 
 .neonBorderWrapper::before {
@@ -563,7 +563,7 @@
     right: -2px;
     bottom: -2px;
     border-radius: 14px;
-    background: linear-gradient(90deg, #00ff88, #00c8ff, #ff00c8, #00ff88);
+    background: linear-gradient(90deg, #ffaa00, #00c8ff, #ff00c8, #ffaa00);
     background-size: 300% 100%;
     animation: neonBorderFlow 4s linear infinite;
     z-index: -1;
@@ -596,7 +596,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 170, 0, 0.1), transparent);
     animation: neonSweep 3s ease-in-out infinite;
 }
 
@@ -631,7 +631,7 @@
     position: relative;
     padding: 24px;
     background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(0, 255, 136, 0.15);
+    border: 1px solid rgba(123, 97, 255, 0.15);
     border-radius: 8px;
     border-left: 3px solid var(--primary);
     min-height: 100px;
@@ -641,9 +641,9 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.9rem;
     line-height: 1.9;
-    color: rgba(0, 255, 136, 0.9);
+    color: rgba(123, 97, 255, 0.9);
     margin: 0;
-    text-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    text-shadow: 0 0 20px rgba(255, 170, 0, 0.2);
 }
 
 .typewriterCursor {
@@ -682,12 +682,12 @@
     position: relative;
     padding: 2px;
     border-radius: 12px;
-    background: linear-gradient(90deg, #00ff88, #00c8ff, #ff00c8, #00ff88);
+    background: linear-gradient(90deg, #ffaa00, #00c8ff, #ff00c8, #ffaa00);
     background-size: 300% 100%;
     animation: comboNeonFlow 4s linear infinite;
     box-shadow:
-        0 0 20px rgba(0, 255, 136, 0.3),
-        0 0 40px rgba(0, 255, 136, 0.1);
+        0 0 20px rgba(255, 170, 0, 0.3),
+        0 0 40px rgba(255, 170, 0, 0.1);
 }
 
 .comboWrapper::before {
@@ -698,7 +698,7 @@
     right: -2px;
     bottom: -2px;
     border-radius: 14px;
-    background: linear-gradient(90deg, #00ff88, #00c8ff, #ff00c8, #00ff88);
+    background: linear-gradient(90deg, #ffaa00, #00c8ff, #ff00c8, #ffaa00);
     background-size: 300% 100%;
     animation: comboNeonFlow 4s linear infinite;
     z-index: -1;
@@ -735,7 +735,7 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.08), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 170, 0, 0.08), transparent);
     animation: comboSweep 3s ease-in-out infinite;
 }
 
@@ -766,13 +766,13 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.9rem;
     line-height: 1.9;
-    color: rgba(0, 255, 136, 0.9);
+    color: rgba(123, 97, 255, 0.9);
     margin: 0;
     position: absolute;
     top: 24px;
     left: 24px;
     right: 24px;
-    text-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    text-shadow: 0 0 20px rgba(255, 170, 0, 0.2);
     z-index: 1;
 }
 
@@ -900,7 +900,7 @@
 }
 
 .btnPrimary {
-    background: rgba(0, 255, 136, 0.1);
+    background: rgba(255, 170, 0, 0.1);
     border: 1px solid var(--primary);
     color: var(--primary);
     padding: 14px 28px;
@@ -916,8 +916,8 @@
 }
 
 .btnPrimary:hover {
-    background: rgba(0, 255, 136, 0.2);
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    background: rgba(255, 170, 0, 0.2);
+    box-shadow: 0 0 20px rgba(255, 170, 0, 0.2);
     transform: translateY(-2px);
 }
 
@@ -1205,8 +1205,8 @@
     overflow: hidden;
     z-index: 10;
     box-shadow:
-        0 0 30px rgba(0, 255, 136, 0.15),
-        0 0 60px rgba(0, 212, 255, 0.1),
+        0 0 30px rgba(255, 170, 0, 0.15),
+        0 0 60px rgba(255, 102, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
@@ -1217,11 +1217,11 @@
     border-radius: 16px;
     padding: 2px;
     background: linear-gradient(90deg,
-            #00ff88 0%,
-            #00d4ff 25%,
-            #bd00ff 50%,
-            #00d4ff 75%,
-            #00ff88 100%);
+            #ffaa00 0%,
+            #ff6600 25%,
+            #ffd700 50%,
+            #ff6600 75%,
+            #ffaa00 100%);
     background-size: 300% 100%;
     animation: borderGlow 3s linear infinite;
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -1254,8 +1254,8 @@
 .cornerAccent::after {
     content: '';
     position: absolute;
-    background: #00ff88;
-    box-shadow: 0 0 10px #00ff88;
+    background: #ffaa00;
+    box-shadow: 0 0 10px #ffaa00;
 }
 
 .topLeft {
@@ -1354,8 +1354,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 12px 16px;
-    background: rgba(0, 255, 136, 0.05);
-    border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+    background: rgba(255, 170, 0, 0.05);
+    border-bottom: 1px solid rgba(255, 170, 0, 0.2);
 }
 
 .holoHeaderLeft {
@@ -1367,10 +1367,10 @@
 .holoStatus {
     width: 8px;
     height: 8px;
-    background: #00ff88;
+    background: #ffaa00;
     border-radius: 50%;
     animation: statusPulse 2s ease-in-out infinite;
-    box-shadow: 0 0 10px #00ff88;
+    box-shadow: 0 0 10px #ffaa00;
 }
 
 @keyframes statusPulse {
@@ -1391,7 +1391,7 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem;
     font-weight: 700;
-    color: #00ff88;
+    color: #ffaa00;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
@@ -1401,11 +1401,11 @@
     gap: 16px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.65rem;
-    color: rgba(0, 255, 136, 0.6);
+    color: rgba(255, 170, 0, 0.6);
 }
 
 .holoTime {
-    color: #00d4ff;
+    color: #ff6600;
 }
 
 /* Terminal Body */
@@ -1432,7 +1432,7 @@
 /* Blinking cursor */
 .holoCursor {
     opacity: 0;
-    color: #00ff88;
+    color: #ffaa00;
     animation: none;
 }
 
@@ -1446,7 +1446,7 @@
     justify-content: space-between;
     padding: 12px 18px;
     background: rgba(0, 0, 0, 0.3);
-    border-top: 1px solid rgba(0, 255, 136, 0.1);
+    border-top: 1px solid rgba(255, 170, 0, 0.1);
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.55rem;
     color: rgba(255, 255, 255, 0.5);
@@ -1491,7 +1491,7 @@
 .radarCircleInner {
     width: 100%;
     height: 100%;
-    border: 1px solid rgba(0, 255, 136, 0.15);
+    border: 1px solid rgba(255, 170, 0, 0.15);
     border-radius: 50%;
 }
 
@@ -1501,20 +1501,20 @@
     left: 50%;
     width: 50%;
     height: 2px;
-    background: linear-gradient(90deg, rgba(0, 255, 136, 0.8), transparent);
+    background: linear-gradient(90deg, rgba(255, 170, 0, 0.8), transparent);
     transform-origin: 0% 50%;
     /* Rotate from left center */
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    box-shadow: 0 0 20px rgba(255, 170, 0, 0.5);
 }
 
 .networkNode {
     position: absolute;
     width: 6px;
     height: 6px;
-    background: #00ff88;
+    background: #ffaa00;
     border-radius: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px #00ff88;
+    box-shadow: 0 0 10px #ffaa00;
 }
 
 /* Data Stream Effect */
@@ -1536,7 +1536,7 @@
     height: 60px;
     background: linear-gradient(to bottom,
             transparent 0%,
-            rgba(0, 255, 136, 0.6) 50%,
+            rgba(255, 170, 0, 0.6) 50%,
             transparent 100%);
 }
 
@@ -1612,8 +1612,8 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    background: #002830;
-    border: 2px solid #00bcd4;
+    background: #281400;
+    border: 2px solid #ffaa00;
     border-radius: 6px;
     padding: 10px 14px;
     z-index: 15;
@@ -1631,18 +1631,18 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 1rem;
     font-weight: 700;
-    color: #00bcd4;
+    color: #ffaa00;
 }
 
 .portStatus {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.65rem;
     font-weight: 700;
-    color: #00ff88;
-    background: #001a0d;
+    color: #ffaa00;
+    background: #1a0d00;
     padding: 5px 12px;
     border-radius: 4px;
-    border: 2px solid #00ff88;
+    border: 2px solid #ffaa00;
 }
 
 /* Pulse Rings */
@@ -1650,7 +1650,7 @@
     position: absolute;
     width: 30px;
     height: 30px;
-    border: 2px solid #00ff88;
+    border: 2px solid #ffaa00;
     border-radius: 50%;
     z-index: 5;
 }
@@ -1660,8 +1660,8 @@
     position: absolute;
     top: 45%;
     right: -70px;
-    background: #1f0010;
-    border: 3px solid #ff0066;
+    background: #1f0800;
+    border: 3px solid #ff4400;
     border-radius: 8px;
     padding: 10px 16px;
     z-index: 15;
@@ -1671,7 +1671,7 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.8rem;
     font-weight: 700;
-    color: #ff0066;
+    color: #ff4400;
     letter-spacing: 0.5px;
 }
 

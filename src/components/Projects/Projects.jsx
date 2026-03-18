@@ -88,145 +88,89 @@ function Projects() {
     const [activeIndex, setActiveIndex] = useState(0)
     const [scrollRange, setScrollRange] = useState(0)
 
-    // Fetch ALL repos from GitHub API with automatic README image extraction
+    // Fetch state (now simplified as we use a curated static list)
     useEffect(() => {
-        // Extract ALL valid images from README for 3D carousel
-        const extractAllImagesFromReadme = (readmeContent, repoFullName, defaultBranch) => {
-            if (!readmeContent) return []
-
-            // Decode base64 README content
-            const decodedContent = atob(readmeContent)
-
-            // Find ALL images in the README
-            const mdImageRegex = /!\[.*?\]\((.*?)\)/g
-            const htmlImageRegex = /<img[^>]+src=["']([^"']+)["']/g
-
-            const allImages = []
-            let match
-
-            while ((match = mdImageRegex.exec(decodedContent)) !== null) {
-                allImages.push(match[1])
+        const curatedList = [
+            {
+                id: 'krown-frame',
+                name: 'KrownFrame',
+                customDescription: 'Warframe-themed AI assistant using Next.js with responsive UI and integrated assistant features.',
+                html_url: 'https://github.com/KingshukChatterjee007/KrownFrame',
+                language: 'TypeScript',
+                stargazers_count: 2,
+                forks_count: 0,
+                topics: ['Next.js', 'AI', 'Tailwind', 'Framer Motion'],
+                images: ['/projects/krown.png'],
+            },
+            {
+                id: 'krishi-sahyogi',
+                name: 'Krishi Sahyogi',
+                customDescription: 'An AI-powered agricultural assistant platform for local farmers. (Private Industry Project)',
+                html_url: '#contact',
+                language: 'Python/Flutter',
+                stargazers_count: 'Private',
+                forks_count: 'Private',
+                topics: ['Agriculture', 'AI', 'Flutter', 'Data Science'],
+                images: ['https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=800'],
+            },
+            {
+                id: 'fin-report',
+                name: 'FinReport',
+                customDescription: 'Explainable stock earnings forecasting via news-factor analysis using NLP and financial indices.',
+                html_url: 'https://github.com/KingshukChatterjee007/FinReport-Explainable-Stock-Earnings-Forecasting-via-News-Factor',
+                language: 'HTML/Python',
+                stargazers_count: 2,
+                forks_count: 4,
+                topics: ['Finance', 'NLP', 'Machine Learning', 'Forecasting'],
+                images: ['/projects/fin.png'],
+            },
+            {
+                id: 'sys-logger',
+                name: 'Sys Logger',
+                customDescription: 'System logging platform with advanced frontend architecture and responsive dashboards.',
+                html_url: 'https://github.com/KingshukChatterjee007/Sys_Logger',
+                language: 'JavaScript',
+                stargazers_count: 12,
+                forks_count: 3,
+                topics: ['Monitoring', 'Architecture', 'Dashboard', 'Security'],
+                images: ['/projects/sys.png'],
+            },
+            {
+                id: 'road-damage',
+                name: 'Road Damage Detector',
+                customDescription: 'Computer vision project for identifying road damage using advanced object detection models.',
+                html_url: 'https://github.com/KingshukChatterjee007/Road-Damage-Detector',
+                language: 'Python',
+                stargazers_count: 8,
+                forks_count: 2,
+                topics: ['Computer Vision', 'PyTorch', 'Infrastructure', 'ML'],
+                images: ['https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&q=80&w=800', 'https://images.unsplash.com/photo-1523413363574-c3c44456999a?auto=format&fit=crop&q=80&w=800'],
+            },
+            {
+                id: 'ai-wearables',
+                name: 'AI-Integration-in-Wearables-for-Clot-Monitoring',
+                customDescription: 'AI-Integration in wearables for real-time blood clot risk assessment and health monitoring.',
+                html_url: '#contact',
+                language: 'Embedded AI',
+                stargazers_count: 'R&D',
+                forks_count: 'Private',
+                topics: ['Healthcare', 'Sensors', 'Real-time', 'MedTech'],
+                images: ['/projects/clot.png'],
+            },
+            {
+                id: 'derivatives-pricing',
+                name: 'Advanced-Derivatives-Pricing',
+                customDescription: 'Advanced derivatives pricing engine using quantitative financial models and risk analysis.',
+                html_url: '#contact',
+                language: 'C++/Python',
+                stargazers_count: 'Expert',
+                forks_count: 'Private',
+                topics: ['Quant', 'Finance', 'Derivatives', 'Black-Scholes'],
+                images: ['/projects/quant.png'],
             }
-            while ((match = htmlImageRegex.exec(decodedContent)) !== null) {
-                allImages.push(match[1])
-            }
-
-            // Filter out badges and icons, find actual content images
-            const badgePatterns = [
-                'shields.io',
-                'img.shields.io',
-                'badge',
-                'logo=',
-                'style=for-the-badge',
-                '.svg'
-            ]
-
-            const validImages = allImages.filter(url => {
-                const lowerUrl = url.toLowerCase()
-                if (badgePatterns.some(pattern => lowerUrl.includes(pattern))) {
-                    return false
-                }
-                if (lowerUrl.includes('.png') || lowerUrl.includes('.jpg') || lowerUrl.includes('.jpeg') || lowerUrl.includes('.gif') || lowerUrl.includes('.webp')) {
-                    return true
-                }
-                return false
-            })
-
-            // Convert relative paths to raw GitHub URLs
-            return validImages.map(url => {
-                if (!url.startsWith('http')) {
-                    return `https://raw.githubusercontent.com/${repoFullName}/${defaultBranch}/${url}`
-                }
-                return url
-            })
-        }
-
-        const fetchRepos = async () => {
-            try {
-                setLoading(true)
-
-                // Build headers with optional token for higher rate limits
-                const headers = { 'Accept': 'application/vnd.github.v3+json' }
-                if (GITHUB_TOKEN) {
-                    headers['Authorization'] = `token ${GITHUB_TOKEN}`
-                }
-
-                const response = await fetch(
-                    `https://api.github.com/user/repos?per_page=100&sort=updated&affiliation=owner`,
-                    { headers }
-                )
-
-                if (!response.ok) {
-                    if (response.status === 403) {
-                        throw new Error('Rate limit exceeded. Add VITE_GITHUB_TOKEN to .env.local')
-                    }
-                    throw new Error(`Failed to fetch repos (${response.status})`)
-                }
-
-                const allRepos = await response.json()
-
-                // Filter out forks
-                const filteredRepos = allRepos
-
-
-                // Fetch README for each repo to extract ALL images for carousel
-                const reposWithImages = await Promise.all(
-                    filteredRepos.map(async (repo) => {
-                        let images = []
-
-                        // Fetch README with auth token for higher rate limit
-                        try {
-                            const readmeHeaders = { 'Accept': 'application/vnd.github.v3+json' }
-                            if (GITHUB_TOKEN) {
-                                readmeHeaders['Authorization'] = `token ${GITHUB_TOKEN}`
-                            }
-
-                            const readmeResponse = await fetch(
-                                `https://api.github.com/repos/${repo.full_name}/readme`,
-                                { headers: readmeHeaders }
-                            )
-                            if (readmeResponse.ok) {
-                                const readmeData = await readmeResponse.json()
-                                images = extractAllImagesFromReadme(
-                                    readmeData.content,
-                                    repo.full_name,
-                                    repo.default_branch
-                                )
-                            }
-                        } catch (e) {
-                            // Silently fail - some repos may not have README
-                        }
-
-                        return {
-                            ...repo,
-                            customDescription: projectDescriptions[repo.name] || repo.description || 'A project from my GitHub.',
-                            images, // Array of all images for carousel
-                            image: images[0] || null, // First image for backwards compatibility
-                        }
-                    })
-                )
-
-                // Sort by stars then by update date
-                const sortedRepos = reposWithImages.sort((a, b) => {
-                    if (b.stargazers_count !== a.stargazers_count) {
-                        return b.stargazers_count - a.stargazers_count
-                    }
-                    return new Date(b.updated_at) - new Date(a.updated_at)
-                })
-
-                setRepos(sortedRepos)
-                setError(null)
-            } catch (err) {
-                console.error('Error fetching repos:', err)
-                setError(err.message)
-            } finally {
-                setLoading(false)
-            }
-        }
-
-        fetchRepos()
-        const interval = setInterval(fetchRepos, 5 * 60 * 1000)
-        return () => clearInterval(interval)
+        ]
+        setRepos(curatedList)
+        setLoading(false)
     }, [])
 
     // Calculate scroll transform
@@ -249,9 +193,7 @@ function Projects() {
             const updateScrollRange = () => {
                 const totalWidth = sliderRef.current.scrollWidth
                 const visibleWidth = sliderRef.current.clientWidth
-                // Add buffer to ensure last item is fully cleared
-                const buffer = 100
-                setScrollRange(Math.max(0, totalWidth - visibleWidth + buffer))
+                setScrollRange(Math.max(0, totalWidth - visibleWidth))
             }
 
             // Initial calculation
@@ -282,10 +224,8 @@ function Projects() {
                         <h2 className="section-title">
                             <span className="gradient-text">Featured Project Vault</span>
                         </h2>
-                        <p className="section-subtitle">
-                            Applications & tools - fetched live from GitHub
-                            {loading && <Loader />}
-                            {error && <span style={{ color: '#ff5555', marginLeft: '10px' }}>Error: {error}</span>}
+                        <p className={styles.sectionSubtitle}>
+                            A curated selection of my specialized applications & tools
                         </p>
                     </motion.div>
                 </div>
@@ -311,34 +251,14 @@ function Projects() {
                                     whileHover={{ scale: isActive ? 1.12 : 0.95, y: -10 }}
                                     transition={{ duration: 0.3 }}
                                 >
-                                    {/* Project Images - 3D Carousel if multiple */}
+                                    {/* Project Images - Static (User requested removal of carousel) */}
                                     {repo.images && repo.images.length > 0 && (
                                         <div className={styles.projectImageWrapper}>
-                                            {repo.images.length === 1 ? (
-                                                // Single image
-                                                <img src={repo.images[0]} alt={repo.name} className={styles.projectImage} />
-                                            ) : (
-                                                // 3D Auto-Carousel for multiple images
-                                                <div
-                                                    className={styles.imageCarousel}
-                                                    style={{
-                                                        '--total-images': repo.images.length,
-                                                        '--animation-duration': `${repo.images.length * 3}s`
-                                                    }}
-                                                >
-                                                    {repo.images.map((img, imgIndex) => (
-                                                        <img
-                                                            key={imgIndex}
-                                                            src={img}
-                                                            alt={`${repo.name} ${imgIndex + 1}`}
-                                                            className={styles.carouselImage}
-                                                            style={{
-                                                                animationDelay: `${imgIndex * 3}s`
-                                                            }}
-                                                        />
-                                                    ))}
-                                                </div>
-                                            )}
+                                            <img 
+                                                src={repo.images[0]} 
+                                                alt={repo.name} 
+                                                className={styles.projectImage} 
+                                            />
                                             <div className={styles.imageOverlay}></div>
                                         </div>
                                     )}

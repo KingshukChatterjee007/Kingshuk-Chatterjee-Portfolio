@@ -1,7 +1,7 @@
 .connect {
     position: relative;
     padding: 120px 0 160px;
-    background: var(--primary, #00ff88);
+    background: var(--primary, #7b61ff);
     text-align: center;
     overflow: hidden;
 }
@@ -69,7 +69,7 @@
 }
 
 .cursor {
-    color: var(--primary, #00ff88);
+    color: var(--primary, #7b61ff);
     font-size: 1.2rem;
 }
 

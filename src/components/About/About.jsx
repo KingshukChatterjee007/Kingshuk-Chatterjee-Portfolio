@@ -51,8 +51,7 @@ function About() {
     const isInView = useInView(ref, { once: true, margin: "-100px" })
 
     return (
-        <section id="about" className={`section ${styles.about}`}>
-            <div className="hex-grid"></div>
+        <section className={styles.about} id="about">
             <div className="container">
                 <motion.div
                     ref={ref}

@@ -3,7 +3,7 @@
     position: relative;
     min-height: 100vh;
     padding: 80px 20px;
-    background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #000000 100%);
+    background: transparent;
     overflow: hidden;
 }
 
@@ -81,7 +81,7 @@
     padding: 0;
     z-index: 100 !important;
     border: 2px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 40px rgba(255, 170, 0, 0.2);
 
     /* FORCE CENTER - Disable Transform, Use Margins */
     transform: none !important;
@@ -293,4 +293,80 @@
     .mobileCategoryTitle {
         font-size: 0.8rem;
     }
+}
+
+/* Detail Card Overlay */
+.detailCard {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    background: rgba(13, 13, 20, 0.9);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--primary);
+    border-radius: 16px;
+    padding: 20px;
+    z-index: 200;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 170, 0, 0.1);
+}
+
+.detailHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 170, 0, 0.2);
+}
+
+.detailHeader h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.closeBtn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.closeBtn:hover {
+    color: var(--primary);
+}
+
+.detailBody p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.categoryInfo {
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Selected Node State */
+.selected {
+    z-index: 150 !important;
+    border-width: 2px !important;
+    transform: translate(-50%, -50%) scale(1.1) !important;
+}
+
+.selected::after {
+    content: '';
+    position: absolute;
+    inset: -5px;
+    border: 1px solid var(--primary);
+    border-radius: inherit;
+    animation: pulse-glow 2s infinite;
 }

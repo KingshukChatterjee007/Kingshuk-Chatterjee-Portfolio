@@ -64,7 +64,7 @@ const experiences = [
         date: "Jan 2026 - Feb 2026",
         skills: ["Landing Pages", "Web Design", "Education Platforms"],
         icon: <Briefcase />,
-        color: '#00ff88'
+        color: '#7b61ff'
     },
     {
         id: 2,

@@ -1,11 +1,11 @@
 /* Global Styles - Karthigaiselvam Portfolio - Cyber Security Theme */
 
 :root {
-  /* Cyber Color Palette */
-  --primary: #00ff88;
-  --primary-dim: #00cc6a;
-  --secondary: #00d4ff;
-  --accent: #ff006e;
+  /* Cyber Color Palette - Updated to Amber/Gold */
+  --primary: #ffaa00;
+  --primary-dim: #cc8800;
+  --secondary: #ff6600;
+  --accent: #ffd700;
   --warning: #ffb800;
 
   /* Background */
@@ -19,19 +19,18 @@
   --text-primary: #e0e0e0;
   --text-secondary: #8892a0;
   --text-muted: #9ca3af;
-  /* Fix: Lighter gray for AA contrast compliance */
-  --text-code: #00ff88;
+  --text-code: #7b61ff;
 
   /* Gradients */
-  --gradient-cyber: linear-gradient(135deg, #00ff88 0%, #00d4ff 50%, #d946ef 100%);
-  --gradient-accent: linear-gradient(135deg, #ff006e 0%, #ffb800 100%);
+  --gradient-cyber: linear-gradient(135deg, #ffaa00 0%, #ff6600 50%, #ffd700 100%);
+  --gradient-accent: linear-gradient(135deg, #ffd700 0%, #ffb800 100%);
   --gradient-dark: linear-gradient(180deg, var(--bg-dark) 0%, var(--bg-darker) 100%);
 
   /* Glow Effects */
-  --glow-primary: 0 0 20px rgba(0, 255, 136, 0.3);
-  --glow-secondary: 0 0 20px rgba(0, 212, 255, 0.3);
-  --glow-accent: 0 0 20px rgba(255, 0, 110, 0.3);
-  --glow-text: 0 0 10px rgba(0, 255, 136, 0.5);
+  --glow-primary: 0 0 20px rgba(255, 170, 0, 0.3);
+  --glow-secondary: 0 0 20px rgba(255, 102, 0, 0.3);
+  --glow-accent: 0 0 20px rgba(255, 215, 0, 0.3);
+  --glow-text: 0 0 10px rgba(255, 170, 0, 0.5);
 
   /* Shadows */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
@@ -39,8 +38,8 @@
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
 
   /* Borders */
-  --border-color: rgba(0, 255, 136, 0.1);
-  --border-glow: rgba(0, 255, 136, 0.3);
+  --border-color: rgba(255, 170, 0, 0.1);
+  --border-glow: rgba(255, 170, 0, 0.3);
   --border-radius: 8px;
   --border-radius-lg: 16px;
 
@@ -76,6 +75,8 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 /* Typography */
@@ -436,16 +437,6 @@ a {
   }
 }
 
-/* ========== HEX GRID ========== */
-.hex-grid {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%2300ff88' fill-opacity='0.03'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  pointer-events: none;
-  opacity: 0.5;
-}
-
 /* ========== NOISE OVERLAY ========== */
 .noise-overlay {
   position: fixed;
@@ -462,8 +453,8 @@ a {
 /* ========== GRID BACKGROUND ========== */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(0, 255, 136, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 136, 0.02) 1px, transparent 1px);
+    linear-gradient(rgba(123, 97, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(123, 97, 255, 0.02) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
@@ -478,7 +469,7 @@ a {
 .glow-orb-1 {
   width: 400px;
   height: 400px;
-  background: rgba(0, 255, 136, 0.1);
+  background: rgba(123, 97, 255, 0.1);
   top: -200px;
   right: -100px;
 }
@@ -502,7 +493,7 @@ a {
   align-items: center;
   gap: 8px;
   padding: 8px 20px;
-  background: rgba(0, 255, 136, 0.05);
+  background: rgba(123, 97, 255, 0.05);
   border: 1px solid var(--border-color);
   border-radius: 50px;
   font-size: 0.8rem;

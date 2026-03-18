@@ -54,7 +54,7 @@ const HoloTerminal = () => {
 
     const codeLines = [
         { text: '> Initializing workspace...', color: '#888', delay: 0 },
-        { text: '> Target: kingshukchatterjee.dev', color: '#00ff88', delay: 100 },
+        { text: '> Target: kingshukchatterjee.dev', color: '#7b61ff', delay: 100 },
         { text: '', color: '#fff', delay: 50 },
         { text: 'class Developer:', color: '#ff79c6', delay: 80 },
         { text: '    def __init__(self):', color: '#8be9fd', delay: 80 },
@@ -62,7 +62,7 @@ const HoloTerminal = () => {
         { text: '        self.role = "Software Developer & Designer"', color: '#f1fa8c', delay: 60 },
         { text: '        self.status = "BUILDING"', color: '#50fa7b', delay: 60 },
         { text: '', color: '#fff', delay: 50 },
-        { text: '> Compilation complete. 0 Errors.', color: '#00ff88', delay: 100 },
+        { text: '> Compilation complete. 0 Errors.', color: '#7b61ff', delay: 100 },
         { text: '> System ready ✓', color: '#50fa7b', delay: 150 },
     ]
 
@@ -456,7 +456,7 @@ function Hero() {
                             cx="180"
                             cy="-5"
                             r="3"
-                            fill="#00ff88"
+                            fill="#7b61ff"
                             animate={{ opacity: [0, 1, 0] }}
                             transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}
                         />

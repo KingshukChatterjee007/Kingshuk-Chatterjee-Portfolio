@@ -2,6 +2,7 @@ import { useState, useEffect, lazy, Suspense } from 'react'
 import Intro from './components/Intro/Intro'
 import Navbar from './components/Navbar/Navbar'
 import Hero from './components/Hero/Hero'
+import AdvancedBackground from './components/Background/AdvancedBackground'
 import styles from './App.module.css'
 
 // Lazy Load heavy components below the fold
@@ -32,10 +33,10 @@ function App() {
 
     return (
         <div className={styles.app}>
+            <AdvancedBackground />
             {/* Full-Screen Intro Animation */}
             {!introComplete && <Intro onComplete={() => setIntroComplete(true)} />}
 
-            <div className="bg-glow"></div>
             <Navbar />
             <main>
                 <Hero />

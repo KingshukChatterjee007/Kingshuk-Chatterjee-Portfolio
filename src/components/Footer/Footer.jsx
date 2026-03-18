@@ -50,23 +50,34 @@ function Footer() {
                 <div className={styles.footerContent}>
                     {/* Logo & Description */}
                     <div className={styles.footerBrand}>
-                        <a href="#home" className={styles.logo}>
+                        <motion.a
+                            href="#home"
+                            className={styles.logo}
+                            whileHover={{ scale: 1.02 }}
+                        >
                             <span className="gradient-text">K</span>ingshuk{' '}
                             <span className={styles.logoAccent}>C</span>hatterjee
-                        </a>
+                        </motion.a>
                         <p className={styles.tagline}>
                             Software Developer & UI/Systems Designer<br />
-                            KIIT University
+                            <span className={styles.institution}>KIIT University</span>
                         </p>
+
+                        <div className={styles.systemStatus}>
+                            <div className={styles.statusDot}></div>
+                            <span className={styles.statusText}>SYSTEM OVERRIDE: ACTIVE</span>
+                        </div>
                     </div>
 
                     {/* Quick Links */}
                     <nav className={styles.footerNav}>
-                        <h3>Quick Links</h3>
+                        <h3 className={styles.footerTitle}>Navigation</h3>
                         <ul>
                             {footerLinks.map((link) => (
                                 <li key={link.name}>
-                                    <a href={link.href}>{link.name}</a>
+                                    <a href={link.href} className={styles.navLink}>
+                                        <span className={styles.linkArrow}>$</span> {link.name}
+                                    </a>
                                 </li>
                             ))}
                         </ul>
@@ -74,7 +85,7 @@ function Footer() {
 
                     {/* Connect */}
                     <div className={styles.footerConnect}>
-                        <h3>Connect</h3>
+                        <h3 className={styles.footerTitle}>Terminal</h3>
                         <div className={styles.socialIcons}>
                             {socialIcons.map((item) => (
                                 <motion.a
@@ -82,23 +93,33 @@ function Footer() {
                                     href={item.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    whileHover={{ scale: 1.15, y: -3 }}
+                                    whileHover={{ scale: 1.1, y: -5 }}
+                                    className={styles.socialLink}
                                     aria-label={item.label}
                                 >
                                     {item.icon}
                                 </motion.a>
                             ))}
                         </div>
+                        <motion.button
+                            className={styles.scrollTop}
+                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                            whileHover={{ x: 5 }}
+                        >
+                            Return To Top
+                        </motion.button>
                     </div>
                 </div>
 
                 {/* Bottom */}
                 <div className={styles.footerBottom}>
-                    <p className={styles.copyright}>
-                        © {currentYear} Kingshuk Chatterjee. All rights reserved.
-                    </p>
+                    <div className={styles.copyrightWrapper}>
+                        <p className={styles.copyright}>
+                            © {currentYear} K. CHATTERJEE | SECTOR-7G
+                        </p>
+                    </div>
                     <p className={styles.madeWith}>
-                        Crafted with passion & purpose
+                        <span className={styles.shimmerText}>CRAFTED WITH PASSION & PURPOSE</span>
                     </p>
                 </div>
             </div>

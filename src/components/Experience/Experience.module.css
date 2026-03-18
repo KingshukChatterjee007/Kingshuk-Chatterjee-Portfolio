@@ -1,8 +1,8 @@
 /* Main Scroll Wrapper - Large height for scroll-driven animation */
 .experienceWrapper {
     position: relative;
-    background: var(--bg-darker);
-    height: 700vh;
+    background: transparent;
+    height: 150vh; /* Final radical reduction to fix ghost scroll */
 }
 
 /* Sticky Container - Stays in view during scroll */
@@ -35,7 +35,7 @@
     transform: translateX(-50%);
     width: 600px;
     height: 500px;
-    background: rgba(0, 255, 136, 0.06);
+    background: rgba(255, 170, 0, 0.06);
     filter: blur(100px);
     border-radius: 50%;
 }
@@ -46,7 +46,7 @@
     left: 30%;
     width: 400px;
     height: 400px;
-    background: rgba(138, 43, 226, 0.05);
+    background: rgba(255, 102, 0, 0.05);
     filter: blur(100px);
     border-radius: 50%;
 }
@@ -77,6 +77,12 @@
     border-radius: 50%;
 }
 
+.experience {
+    padding: var(--section-padding);
+    background: transparent;
+    position: relative;
+}
+
 /* Section Header */
 .sectionHeader {
     text-align: center;
@@ -89,7 +95,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(0, 255, 136, 0.1);
+    background: rgba(255, 170, 0, 0.1);
     border: 1px solid var(--primary);
     border-radius: 50px;
     padding: 8px 18px;
@@ -124,7 +130,7 @@
     padding: 20px;
     /* Reduced internal padding */
     background: linear-gradient(145deg, rgba(16, 16, 22, 0.98), rgba(8, 8, 12, 0.99));
-    border: 2px solid;
+    border: 2px solid rgba(255, 170, 0, 0.3);
     border-radius: 20px;
     text-decoration: none;
     color: inherit;
@@ -235,8 +241,8 @@
     align-items: center;
     gap: 10px;
     padding: 10px 24px;
-    background: rgba(0, 255, 136, 0.1);
-    border: 1px solid rgba(0, 255, 136, 0.3);
+    background: rgba(255, 170, 0, 0.1);
+    border: 1px solid rgba(255, 170, 0, 0.3);
     border-radius: 50px;
     color: var(--primary);
     font-size: 0.8rem;
@@ -349,7 +355,7 @@
     max-height: 85vh;
     object-fit: contain;
     border-radius: 12px;
-    box-shadow: 0 0 60px rgba(0, 255, 136, 0.3);
+    box-shadow: 0 0 60px rgba(255, 170, 0, 0.3);
 }
 
 .closeBtn {

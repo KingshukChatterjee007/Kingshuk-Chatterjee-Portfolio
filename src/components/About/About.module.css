@@ -1,6 +1,6 @@
 .about {
     position: relative;
-    background: var(--bg-dark);
+    background: transparent;
 }
 
 .aboutGrid {
@@ -17,7 +17,7 @@
 }
 
 .aboutTerminal {
-    box-shadow: var(--shadow-lg), 0 0 30px rgba(0, 255, 136, 0.05);
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(123, 97, 255, 0.05);
 }
 
 .outputSection {
@@ -41,7 +41,7 @@
     padding: 20px;
     border-radius: var(--border-radius);
     text-align: center;
-    box-shadow: var(--shadow-md), 0 0 20px rgba(0, 255, 136, 0.2);
+    box-shadow: var(--shadow-md), 0 0 20px rgba(123, 97, 255, 0.2);
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -87,11 +87,11 @@
     margin-bottom: 8px;
     padding: 3px;
     border-radius: 16px;
-    background: linear-gradient(135deg, #00ff88, #00d4ff, #bd00ff, #00ff88);
+    background: linear-gradient(135deg, #7b61ff, #00d4ff, #bd00ff, #7b61ff);
     background-size: 400% 400%;
     animation: borderGlow 6s ease infinite, floatCard 4s ease-in-out infinite;
     box-shadow:
-        0 0 20px rgba(0, 255, 136, 0.2),
+        0 0 20px rgba(123, 97, 255, 0.2),
         0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
@@ -103,7 +103,7 @@
     right: -3px;
     bottom: -3px;
     border-radius: 18px;
-    background: linear-gradient(135deg, #00ff88, #00d4ff, #bd00ff, #00ff88);
+    background: linear-gradient(135deg, #7b61ff, #00d4ff, #bd00ff, #7b61ff);
     background-size: 400% 400%;
     animation: borderGlow 6s ease infinite;
     z-index: -1;
