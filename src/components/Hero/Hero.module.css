@@ -1,0 +1,1768 @@
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 80px;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+/* Background Effects */
+.matrixBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 15% 50%, rgba(0, 255, 136, 0.03) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(0, 212, 255, 0.03) 0%, transparent 25%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.glowOrb1 {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(0, 255, 136, 0.08) 0%, transparent 70%);
+    top: -200px;
+    right: -100px;
+    pointer-events: none;
+    filter: blur(60px);
+    animation: float-glow 10s ease-in-out infinite;
+}
+
+.glowOrb2 {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+    bottom: -100px;
+    left: -150px;
+    pointer-events: none;
+    filter: blur(50px);
+    animation: float-glow 15s ease-in-out infinite reverse;
+}
+
+@keyframes float-glow {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(-30px, 30px);
+    }
+}
+
+.heroContainer {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.heroContent {
+    max-width: 100%;
+}
+
+/* Status Badge */
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    color: var(--primary);
+    margin-bottom: 24px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--primary);
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Name UI - REVISED */
+.nameWrapper {
+    position: relative;
+    margin-bottom: 20px;
+    white-space: nowrap;
+    /* Prevent wrapping */
+}
+
+.name {
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+}
+
+/* Gradient Text for Name - NO WHITE */
+.firstName {
+    display: inline-block;
+    background: linear-gradient(to right, #00d4ff, #00ff88);
+    /* Cyan to Green */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.2));
+}
+
+.lastName {
+    display: inline-block;
+    background: var(--gradient-cyber);
+    /* Purple/Multi */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.2em;
+    /* Slightly larger for emphasis */
+    margin-left: 2px;
+}
+
+/* Typewriter Role */
+.roleContainer {
+    display: flex;
+    align-items: center;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 1.4rem;
+    margin-bottom: 24px;
+    min-height: 40px;
+    color: #e2e8f0;
+}
+
+.rolePrefix {
+    color: var(--primary);
+    font-weight: 700;
+    margin-right: 10px;
+}
+
+.role {
+    color: var(--secondary);
+    font-weight: 500;
+}
+
+.cursor {
+    display: inline-block;
+    width: 10px;
+    height: 3px;
+    background: var(--primary);
+    margin-left: 8px;
+    animation: cursor-blink 1s step-end infinite;
+}
+
+/* Description - Advanced Animated Quote Card */
+.description {
+    font-size: 0.95rem;
+    line-height: 2;
+    margin-bottom: 40px;
+    margin-top: 12px;
+    color: var(--text-secondary);
+    max-width: 80%;
+    position: relative;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, rgba(0, 0, 0, 0.4) 100%);
+    border: 1px solid rgba(0, 255, 136, 0.15);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+/* Animated gradient border */
+.description::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    animation: borderScan 3s ease-in-out infinite;
+}
+
+/* Corner accent - top left */
+.description::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 12px;
+    height: 12px;
+    border-left: 2px solid var(--primary);
+    border-top: 2px solid var(--primary);
+    opacity: 0.6;
+}
+
+/* Scan line animation */
+@keyframes borderScan {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: translateX(-100%);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+}
+
+/* Hover effects */
+.description:hover {
+    border-color: rgba(0, 255, 136, 0.4);
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.06) 0%, rgba(0, 0, 0, 0.5) 100%);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.1), inset 0 0 20px rgba(0, 255, 136, 0.02);
+    color: var(--text-primary);
+}
+
+.highlight {
+    color: var(--text-primary);
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+/* =============================================
+   OPTION A: Holographic Terminal Quote
+   ============================================= */
+.quoteTerminal {
+    max-width: 85%;
+    margin-bottom: 40px;
+    margin-top: 12px;
+    background: linear-gradient(180deg, rgba(20, 25, 30, 0.95) 0%, rgba(10, 15, 20, 0.98) 100%);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow:
+        0 0 40px rgba(0, 255, 136, 0.08),
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    position: relative;
+}
+
+.quoteTerminal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(0, 255, 136, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.quoteTerminalHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid rgba(0, 255, 136, 0.1);
+}
+
+.terminalDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    opacity: 0.9;
+}
+
+.terminalTitle {
+    margin-left: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.5px;
+}
+
+.quoteTerminalBody {
+    padding: 20px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #00ff88;
+    position: relative;
+}
+
+.quotePrompt {
+    color: #ffbd2e;
+    margin-right: 12px;
+    font-weight: 600;
+}
+
+.quoteText {
+    color: rgba(0, 255, 136, 0.9);
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+.quoteCursor {
+    color: #00ff88;
+    animation: cursorBlink 1s step-end infinite;
+    margin-left: 2px;
+}
+
+@keyframes cursorBlink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* =============================================
+   OPTION B: Glitch/Distortion Effect
+   ============================================= */
+.glitchContainer {
+    max-width: 85%;
+    margin-bottom: 40px;
+    margin-top: 12px;
+    position: relative;
+    padding: 20px 24px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 136, 0.1);
+    border-radius: 8px;
+}
+
+.glitchText {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: var(--text-secondary);
+    position: relative;
+    margin: 0;
+    animation: glitchText 5s infinite;
+}
+
+/* RGB Split layers */
+.glitchText::before,
+.glitchText::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.glitchText::before {
+    color: #ff0040;
+    animation: glitchBefore 3s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    transform: translateX(-2px);
+}
+
+.glitchText::after {
+    color: #00ffff;
+    animation: glitchAfter 2s infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    transform: translateX(2px);
+}
+
+@keyframes glitchText {
+
+    0%,
+    90%,
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    92% {
+        opacity: 0.8;
+        transform: translateX(-2px);
+    }
+
+    94% {
+        opacity: 0.9;
+        transform: translateX(2px);
+    }
+
+    96% {
+        opacity: 0.7;
+        transform: translateX(-1px);
+    }
+
+    98% {
+        opacity: 1;
+        transform: translateX(1px);
+    }
+}
+
+@keyframes glitchBefore {
+
+    0%,
+    90%,
+    100% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+
+    92%,
+    94% {
+        transform: translateX(-3px);
+        opacity: 0.5;
+    }
+
+    96%,
+    98% {
+        transform: translateX(2px);
+        opacity: 0.3;
+    }
+}
+
+@keyframes glitchAfter {
+
+    0%,
+    88%,
+    100% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+
+    90%,
+    92% {
+        transform: translateX(3px);
+        opacity: 0.5;
+    }
+
+    94%,
+    96% {
+        transform: translateX(-2px);
+        opacity: 0.3;
+    }
+}
+
+/* =============================================
+   OPTION C: Floating Particles Background
+   ============================================= */
+.particleContainer {
+    max-width: 85%;
+    margin-bottom: 40px;
+    margin-top: 12px;
+    position: relative;
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(0, 20, 15, 0.6) 0%, rgba(0, 0, 0, 0.4) 100%);
+    border: 1px solid rgba(0, 255, 136, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    bottom: -10px;
+    width: 6px;
+    height: 6px;
+    background: radial-gradient(circle, rgba(0, 255, 136, 0.8), transparent);
+    border-radius: 50%;
+    animation: particleFloat 4s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.particle:nth-child(odd) {
+    width: 4px;
+    height: 4px;
+    opacity: 0.6;
+}
+
+.particle:nth-child(3n) {
+    background: radial-gradient(circle, rgba(0, 200, 255, 0.6), transparent);
+    box-shadow: 0 0 8px rgba(0, 200, 255, 0.4);
+}
+
+@keyframes particleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+        transform: translateY(-20px) scale(1);
+    }
+
+    90% {
+        opacity: 0.8;
+        transform: translateY(-80px) scale(0.8);
+    }
+
+    100% {
+        transform: translateY(-100px) scale(0.3);
+        opacity: 0;
+    }
+}
+
+.particleText {
+    position: relative;
+    z-index: 1;
+    font-size: 0.95rem;
+    line-height: 2;
+    color: var(--text-secondary);
+    margin: 0;
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+/* =============================================
+   OPTION D: Neon Border Animation
+   ============================================= */
+.neonBorderWrapper {
+    max-width: 85%;
+    margin-bottom: 40px;
+    margin-top: 12px;
+    position: relative;
+    padding: 2px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #00ff88, #00c8ff, #ff00c8, #00ff88);
+    background-size: 300% 100%;
+    animation: neonBorderFlow 4s linear infinite;
+    box-shadow:
+        0 0 20px rgba(0, 255, 136, 0.3),
+        0 0 40px rgba(0, 255, 136, 0.1);
+}
+
+.neonBorderWrapper::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 14px;
+    background: linear-gradient(90deg, #00ff88, #00c8ff, #ff00c8, #00ff88);
+    background-size: 300% 100%;
+    animation: neonBorderFlow 4s linear infinite;
+    z-index: -1;
+    filter: blur(15px);
+    opacity: 0.6;
+}
+
+@keyframes neonBorderFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 300% 50%;
+    }
+}
+
+.neonBorderCard {
+    background: rgba(5, 10, 15, 0.95);
+    border-radius: 10px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.neonBorderCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+    animation: neonSweep 3s ease-in-out infinite;
+}
+
+@keyframes neonSweep {
+
+    0%,
+    100% {
+        left: -100%;
+    }
+
+    50% {
+        left: 100%;
+    }
+}
+
+.neonText {
+    font-size: 0.95rem;
+    line-height: 2;
+    color: var(--text-secondary);
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* =============================================
+   OPTION E: Typewriter Effect
+   ============================================= */
+.typewriterContainer {
+    max-width: 85%;
+    margin-bottom: 40px;
+    margin-top: 12px;
+    position: relative;
+    padding: 24px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 136, 0.15);
+    border-radius: 8px;
+    border-left: 3px solid var(--primary);
+    min-height: 100px;
+}
+
+.typewriterText {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: rgba(0, 255, 136, 0.9);
+    margin: 0;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+}
+
+.typewriterCursor {
+    color: var(--primary);
+    font-weight: 400;
+    margin-left: 2px;
+    opacity: 1;
+}
+
+.cursorBlink {
+    animation: typewriterBlink 0.8s step-end infinite;
+}
+
+@keyframes typewriterBlink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* =============================================
+   COMBO: Neon Border + Typewriter + Glitch
+   ============================================= */
+
+/* Neon flowing border wrapper (from Option D) */
+.comboWrapper {
+    max-width: 85%;
+    margin-bottom: 40px;
+    margin-top: 12px;
+    position: relative;
+    padding: 2px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, #00ff88, #00c8ff, #ff00c8, #00ff88);
+    background-size: 300% 100%;
+    animation: comboNeonFlow 4s linear infinite;
+    box-shadow:
+        0 0 20px rgba(0, 255, 136, 0.3),
+        0 0 40px rgba(0, 255, 136, 0.1);
+}
+
+.comboWrapper::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 14px;
+    background: linear-gradient(90deg, #00ff88, #00c8ff, #ff00c8, #00ff88);
+    background-size: 300% 100%;
+    animation: comboNeonFlow 4s linear infinite;
+    z-index: -1;
+    filter: blur(15px);
+    opacity: 0.5;
+}
+
+@keyframes comboNeonFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 300% 50%;
+    }
+}
+
+/* Inner card - fixed height to prevent resizing */
+.comboCard {
+    background: rgba(5, 10, 15, 0.95);
+    border-radius: 10px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    min-height: 140px;
+    height: auto;
+    text-align: left;
+}
+
+.comboCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.08), transparent);
+    animation: comboSweep 3s ease-in-out infinite;
+}
+
+@keyframes comboSweep {
+
+    0%,
+    100% {
+        left: -100%;
+    }
+
+    50% {
+        left: 100%;
+    }
+}
+
+/* Invisible placeholder to reserve full space */
+.comboPlaceholder {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    margin: 0;
+    visibility: hidden;
+    position: relative;
+}
+
+/* Typewriter text (from Option E) - positioned over placeholder */
+.comboText {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: rgba(0, 255, 136, 0.9);
+    margin: 0;
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    right: 24px;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    z-index: 1;
+}
+
+.comboCursor {
+    color: var(--primary);
+    animation: comboCursorBlink 0.5s step-end infinite;
+}
+
+@keyframes comboCursorBlink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Glitch effect after typing completes (from Option B) */
+.comboGlitch {
+    animation: comboGlitchText 5s infinite;
+}
+
+.comboGlitch::before,
+.comboGlitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.comboGlitch::before {
+    color: #ff0040;
+    animation: comboGlitchBefore 3s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+}
+
+.comboGlitch::after {
+    color: #00ffff;
+    animation: comboGlitchAfter 2s infinite;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+}
+
+@keyframes comboGlitchText {
+
+    0%,
+    92%,
+    100% {
+        transform: translateX(0);
+    }
+
+    93% {
+        transform: translateX(-2px);
+    }
+
+    95% {
+        transform: translateX(2px);
+    }
+
+    97% {
+        transform: translateX(-1px);
+    }
+
+    99% {
+        transform: translateX(1px);
+    }
+}
+
+@keyframes comboGlitchBefore {
+
+    0%,
+    92%,
+    100% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+
+    93%,
+    95% {
+        transform: translateX(-3px);
+        opacity: 0.4;
+    }
+
+    97%,
+    99% {
+        transform: translateX(2px);
+        opacity: 0.2;
+    }
+}
+
+@keyframes comboGlitchAfter {
+
+    0%,
+    90%,
+    100% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+
+    91%,
+    93% {
+        transform: translateX(3px);
+        opacity: 0.4;
+    }
+
+    95%,
+    97% {
+        transform: translateX(-2px);
+        opacity: 0.2;
+    }
+}
+
+/* Buttons */
+.buttons {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 48px;
+}
+
+.btnPrimary {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 14px 28px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btnPrimary:hover {
+    background: rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Stats */
+.stats {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.statNumber {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.statLabel {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.statDivider {
+    width: 1px;
+    height: 40px;
+    background: var(--border-color);
+}
+
+/* Hero Visual 3D */
+.heroVisual {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    min-height: 100%;
+    padding: 20px 0 20px 40px;
+    margin-top: 50px;
+}
+
+.codeBlock {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(10, 10, 10, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    transform: rotateY(-5deg) rotateX(5deg);
+    transition: transform 0.3s ease;
+}
+
+.heroVisual:hover .codeBlock {
+    transform: rotateY(0) rotateX(0);
+}
+
+/* Code Syntax */
+.keyword {
+    color: #ff79c6;
+}
+
+.className {
+    color: #f1fa8c;
+}
+
+.function {
+    color: #8be9fd;
+}
+
+.property {
+    color: #e2e8f0;
+}
+
+.string {
+    color: #50fa7b;
+}
+
+.number {
+    color: #bd93f9;
+}
+
+/* Floating Icons */
+.floatingIcon {
+    position: absolute;
+    filter: drop-shadow(0 0 10px currentColor);
+    z-index: 2;
+}
+
+.icon1 {
+    top: -20px;
+    left: 0;
+    color: var(--primary);
+}
+
+.icon2 {
+    top: 40%;
+    right: -30px;
+    color: var(--secondary);
+}
+
+.icon3 {
+    bottom: -20px;
+    left: 20%;
+    color: #bd93f9;
+}
+
+/* Scroll Indicator */
+.scrollIndicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.scrollLine {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--primary), transparent);
+}
+
+.scrollIndicator span {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .heroContainer {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 60px;
+    }
+
+    .heroContent {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        width: 100%;
+        overflow: visible;
+        /* Allow floating elements to show */
+    }
+
+    .nameWrapper {
+        white-space: normal;
+        /* Allow wrapping */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0 10px;
+        /* Add padding to prevent edge clipping */
+    }
+
+    .name {
+        justify-content: center;
+        flex-wrap: wrap;
+        text-align: center;
+        /* Drastically reduce font size to fit long name "Kingshuk Chatterjee" */
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        line-height: 1.3;
+        word-break: break-word;
+        /* Ensure it breaks if still too long */
+    }
+
+    .roleContainer {
+        justify-content: center;
+    }
+
+    .buttons {
+        justify-content: center;
+    }
+
+    .stats {
+        justify-content: center;
+    }
+
+    .codeBlock {
+        transform: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .name {
+        flex-wrap: wrap;
+        font-size: clamp(1.6rem, 8vw, 2.2rem);
+    }
+
+    .roleContainer {
+        font-size: 1rem;
+    }
+
+    .buttons {
+        flex-direction: row;
+        /* Keep side-by-side */
+        width: 100%;
+        gap: 12px;
+        flex-wrap: wrap;
+        /* efficient wrapping for very small screens */
+        justify-content: center;
+    }
+
+    .buttons a {
+        width: auto;
+        /* Let content dictate width */
+        min-width: 120px;
+        /* Ensure hit target size */
+        padding: 10px 16px;
+        /* Slightly reduced padding */
+        font-size: 0.85rem;
+    }
+
+    .stats {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .statDivider {
+        display: none;
+    }
+
+    .description {
+        font-size: 0.95rem;
+        max-width: 100%;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 375px) {
+    .name {
+        font-size: clamp(1.3rem, 7vw, 1.8rem);
+        gap: 8px;
+    }
+
+    .roleContainer {
+        font-size: 0.85rem;
+    }
+
+    .statusBadge {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+    }
+
+    .buttons a {
+        min-width: 100px;
+        padding: 10px 14px;
+        font-size: 0.8rem;
+    }
+
+    .statNumber {
+        font-size: 1.4rem;
+    }
+
+    .statLabel {
+        font-size: 0.65rem;
+    }
+}
+
+/* =============================================
+   HOLOGRAPHIC CYBER TERMINAL - NEW DESIGN
+   ============================================= */
+
+/* Holographic Terminal Container */
+.holoTerminal {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    background: linear-gradient(135deg,
+            rgba(0, 20, 30, 0.95) 0%,
+            rgba(0, 10, 20, 0.98) 100%);
+    border-radius: 16px;
+    overflow: hidden;
+    z-index: 10;
+    box-shadow:
+        0 0 30px rgba(0, 255, 136, 0.15),
+        0 0 60px rgba(0, 212, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Animated glowing border */
+.holoBorder {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    padding: 2px;
+    background: linear-gradient(90deg,
+            #00ff88 0%,
+            #00d4ff 25%,
+            #bd00ff 50%,
+            #00d4ff 75%,
+            #00ff88 100%);
+    background-size: 300% 100%;
+    animation: borderGlow 3s linear infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+@keyframes borderGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 300% 50%;
+    }
+}
+
+/* Corner accents */
+.cornerAccent {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+    z-index: 20;
+}
+
+.cornerAccent::before,
+.cornerAccent::after {
+    content: '';
+    position: absolute;
+    background: #00ff88;
+    box-shadow: 0 0 10px #00ff88;
+}
+
+.topLeft {
+    top: 0;
+    left: 0;
+}
+
+.topRight {
+    top: 0;
+    right: 0;
+}
+
+.bottomLeft {
+    bottom: 0;
+    left: 0;
+}
+
+.bottomRight {
+    bottom: 0;
+    right: 0;
+}
+
+.topLeft::before {
+    width: 3px;
+    height: 20px;
+    top: 0;
+    left: 0;
+}
+
+.topLeft::after {
+    width: 20px;
+    height: 3px;
+    top: 0;
+    left: 0;
+}
+
+.topRight::before {
+    width: 3px;
+    height: 20px;
+    top: 0;
+    right: 0;
+}
+
+.topRight::after {
+    width: 20px;
+    height: 3px;
+    top: 0;
+    right: 0;
+}
+
+.bottomLeft::before {
+    width: 3px;
+    height: 20px;
+    bottom: 0;
+    left: 0;
+}
+
+.bottomLeft::after {
+    width: 20px;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+}
+
+.bottomRight::before {
+    width: 3px;
+    height: 20px;
+    bottom: 0;
+    right: 0;
+}
+
+.bottomRight::after {
+    width: 20px;
+    height: 3px;
+    bottom: 0;
+    right: 0;
+}
+
+/* Scanlines overlay */
+.holoScanlines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg,
+            transparent 0px,
+            transparent 2px,
+            rgba(0, 0, 0, 0.1) 2px,
+            rgba(0, 0, 0, 0.1) 4px);
+    pointer-events: none;
+    z-index: 15;
+    opacity: 0.5;
+}
+
+/* Terminal Header */
+.holoHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: rgba(0, 255, 136, 0.05);
+    border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.holoHeaderLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.holoStatus {
+    width: 8px;
+    height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    animation: statusPulse 2s ease-in-out infinite;
+    box-shadow: 0 0 10px #00ff88;
+}
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(0.8);
+    }
+}
+
+.holoTitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #00ff88;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.holoHeaderRight {
+    display: flex;
+    gap: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: rgba(0, 255, 136, 0.6);
+}
+
+.holoTime {
+    color: #00d4ff;
+}
+
+/* Terminal Body */
+.holoBody {
+    padding: 18px 20px;
+    min-height: 320px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    line-height: 1.8;
+}
+
+.holoLine {
+    display: flex;
+    gap: 12px;
+    min-height: 1.8em;
+}
+
+.lineNumber {
+    color: rgba(255, 255, 255, 0.2);
+    user-select: none;
+    min-width: 20px;
+}
+
+/* Blinking cursor */
+.holoCursor {
+    opacity: 0;
+    color: #00ff88;
+    animation: none;
+}
+
+.holoCursor.visible {
+    opacity: 1;
+}
+
+/* Terminal Footer */
+.holoFooter {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 18px;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(0, 255, 136, 0.1);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.55rem;
+    color: rgba(255, 255, 255, 0.5);
+    gap: 12px;
+}
+
+.holoFooterItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pulsingDot {
+    width: 6px;
+    height: 6px;
+    background: #50fa7b;
+    border-radius: 50%;
+    animation: statusPulse 1.5s ease-in-out infinite;
+}
+
+/* Network Radar Background - FIXED */
+.radarContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Wrapper handles positioning only */
+.radarCircleWrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Inner element handles animation only */
+.radarCircleInner {
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0, 255, 136, 0.15);
+    border-radius: 50%;
+}
+
+.radarSweep {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(0, 255, 136, 0.8), transparent);
+    transform-origin: 0% 50%;
+    /* Rotate from left center */
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.networkNode {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #00ff88;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px #00ff88;
+}
+
+/* Data Stream Effect */
+.dataStream {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.streamLine {
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom,
+            transparent 0%,
+            rgba(0, 255, 136, 0.6) 50%,
+            transparent 100%);
+}
+
+/* Mobile: Simplified version */
+@media (max-width: 768px) {
+    .holoTerminal {
+        max-width: 100%;
+    }
+
+    .radarContainer,
+    .dataStream {
+        display: none;
+    }
+
+    .holoBody {
+        min-height: 200px;
+        font-size: 0.7rem;
+    }
+
+    .holoFooter {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .holoFooterItem:last-child {
+        display: none;
+    }
+}
+
+/* =============================================
+   CREATIVE FLOATING ELEMENTS
+   ============================================= */
+
+/* Floating Terminal Commands - Base (sudo) */
+.floatingCmd {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #ff6600;
+    background: #2d1a00;
+    padding: 12px 18px;
+    border-radius: 8px;
+    border: 3px solid #ff6600;
+    white-space: nowrap;
+    z-index: 15;
+}
+
+/* First command (nmap) - Yellow/Gold - Top Right (slightly down) */
+.cmdTop {
+    top: -10px !important;
+    right: -20px !important;
+    left: auto !important;
+    color: #ffdd00 !important;
+    background: #2d2800 !important;
+    border-color: #ffdd00 !important;
+}
+
+/* Second command (sudo) - Orange - Bottom Center (slightly up) */
+.cmdBottom {
+    bottom: 10px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%);
+}
+
+/* Port Badge - Left of Terminal (moved up, slightly smaller) */
+.portBadge {
+    position: absolute;
+    top: 30%;
+    right: 415px;
+    left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #002830;
+    border: 2px solid #00bcd4;
+    border-radius: 6px;
+    padding: 10px 14px;
+    z-index: 15;
+}
+
+.portLabel {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+.portNumber {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #00bcd4;
+}
+
+.portStatus {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #00ff88;
+    background: #001a0d;
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: 2px solid #00ff88;
+}
+
+/* Pulse Rings */
+.pulseRing {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #00ff88;
+    border-radius: 50%;
+    z-index: 5;
+}
+
+/* CVE Badge */
+.cveBadge {
+    position: absolute;
+    top: 45%;
+    right: -70px;
+    background: #1f0010;
+    border: 3px solid #ff0066;
+    border-radius: 8px;
+    padding: 10px 16px;
+    z-index: 15;
+}
+
+.cveText {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #ff0066;
+    letter-spacing: 0.5px;
+}
+
+/* Circuit Lines SVG */
+.circuitLines {
+    position: absolute;
+    bottom: -50px;
+    left: 20%;
+    width: 150px;
+    height: 40px;
+    z-index: 5;
+    overflow: visible;
+}
+
+/* Mobile: Hide floating elements */
+@media (max-width: 768px) {
+
+    /* Enable floating elements but scale them down */
+    .heroVisual {
+        justify-content: center;
+        padding: 60px 0 120px 0;
+        /* Massive bottom padding to hold the icons */
+        margin-top: 20px;
+        min-height: auto;
+        position: relative;
+    }
+
+    .holoTerminal {
+        max-width: 98%;
+        /* Maximized width */
+    }
+
+    .holoBody {
+        min-height: 300px;
+        /* Increased stable height to prevent resizing/jumping */
+        font-size: 0.65rem;
+        /* Optimized font size */
+        padding: 15px;
+    }
+
+    .floatingCmd,
+    .portBadge,
+    .cveBadge {
+        display: flex !important;
+        /* Force show */
+        transform-origin: center;
+    }
+
+    /* Mobile-specific positions using transform scale */
+
+    /* nmap - Top Right */
+    .cmdTop {
+        top: -15px !important;
+        /* Moved up to clear terminal */
+        right: 0px !important;
+        left: auto !important;
+        transform: scale(0.65);
+        white-space: nowrap;
+    }
+
+    /* sudo - Bottom Right */
+    .cmdBottom {
+        bottom: 55px !important;
+        /* Moved up from 30px to clear "Scroll" text */
+        right: -10px !important;
+        left: auto !important;
+        transform: scale(0.65);
+    }
+
+    /* PORT 443 - Top Left */
+    .portBadge {
+        top: -15px;
+        /* Moved up to clear terminal */
+        left: 0px;
+        right: auto;
+        transform: scale(0.65);
+        padding: 8px 12px;
+    }
+
+    /* CVE - Bottom Left */
+    .cveBadge {
+        top: auto;
+        bottom: 30px;
+        /* Inside the bottom padding */
+        left: 0px;
+        right: auto;
+        transform: scale(0.65);
+    }
+
+    /* Hide decorative lines if too customized */
+    .circuitLines {
+        display: none;
+    }
+}

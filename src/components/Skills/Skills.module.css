@@ -1,0 +1,296 @@
+/* Main Container */
+.skills {
+    position: relative;
+    min-height: 100vh;
+    padding: 80px 20px;
+    background: radial-gradient(circle at 50% 50%, #1a1a2e 0%, #000000 100%);
+    overflow: hidden;
+}
+
+.graphContainer {
+    position: relative;
+    width: 100%;
+    height: 800px;
+    /* Large canvas for the graph */
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+/* SVG Connections */
+.connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Let clicks pass through to nodes */
+    z-index: 0;
+    /* Allow lines to extend beyond the box if needed */
+    overflow: visible;
+}
+
+/* Nodes */
+.node {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Use pill shape for text fitting */
+    border-radius: 30px;
+    padding: 10px 18px;
+    min-width: 60px;
+    background: #050510;
+    /* Opaque */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.nodeContent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    pointer-events: none;
+}
+
+/* Label Inside */
+.nodeLabel {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* Node Types */
+.core {
+    /* Keep Core as a large circle */
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    padding: 0;
+    z-index: 100 !important;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
+
+    /* FORCE CENTER - Disable Transform, Use Margins */
+    transform: none !important;
+    margin-left: -75px;
+    /* Half of 150px */
+    margin-top: -75px;
+    /* Half of 150px */
+}
+
+.core .nodeLabel {
+    /* Reset position to float inside */
+    position: static;
+    transform: none;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    color: #fff;
+    background: transparent;
+    border: none;
+    white-space: normal;
+    max-width: 130px;
+    line-height: 1.2;
+}
+
+/* Push content up so text sits in the true center */
+.core .nodeContent {
+    justify-content: center;
+    padding-bottom: 25px;
+}
+
+.category {
+    /* Categories as Fixed Ovals (Elliptical) */
+    width: 150px;
+    height: 60px;
+    border-radius: 30px;
+    /* Pill shape */
+    padding: 0;
+    z-index: 15;
+    background: #0a0a1a;
+    border-color: rgba(255, 255, 255, 0.4);
+
+    /* FORCE CENTER - Fixed Geometry */
+    transform: none !important;
+    margin-left: -75px;
+    /* Half of 150 */
+    margin-top: -30px;
+    /* Half of 60 */
+
+    /* Ensure content centers */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.category .nodeLabel {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    /* No wrap for pills */
+    text-align: center;
+    width: 100%;
+}
+
+.skill {
+    /* Skills as compact pills (variable width) */
+    padding: 8px 20px;
+    /* Ensure they are centered on the coordinate */
+    transform: translate(-50%, -50%) !important;
+    /* Remove opacity hiding the line */
+    background: rgba(5, 5, 16, 0.4);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.skill .nodeLabel {
+    font-size: 0.8rem;
+    /* Slightly larger */
+    color: #e0e0e0;
+}
+
+/* Orbit Ring */
+.orbitRing {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.core .orbitRing {
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+}
+
+/* Avatar */
+.coreAvatar {
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Mobile Skills Grid - Hidden by default on desktop */
+.mobileSkillsGrid {
+    display: none;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
+    .graphContainer {
+        height: 500px;
+        transform: scale(0.7);
+        transform-origin: center center;
+    }
+}
+
+/* Responsive - Mobile: Hide complex graph, show simple grid */
+@media (max-width: 768px) {
+    .skills {
+        padding: 60px 16px;
+        min-height: auto;
+    }
+
+    .graphContainer {
+        display: none !important;
+    }
+
+    /* Mobile Skills Grid */
+    .mobileSkillsGrid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0;
+        max-width: 100%;
+    }
+
+    .mobileCategory {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 16px;
+        margin-top: 16px;
+        margin-bottom: 8px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobileCategory:first-child {
+        margin-top: 0;
+    }
+
+    .mobileCategoryTitle {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        margin: 0;
+    }
+
+    .mobileSkillBadge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 4px;
+        background: rgba(5, 5, 16, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 20px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.65rem;
+        /* Reduced for "Reverse Engineering" */
+        line-height: 1.2;
+        /* Tight wrap */
+        font-weight: 500;
+        color: #e0e0e0;
+        text-align: center;
+        height: 100%;
+        min-height: 48px;
+        /* Consistent size */
+        word-wrap: break-word;
+        /* Handle overflow */
+        transition: all 0.3s ease;
+    }
+
+    .mobileSkillBadge:active {
+        transform: scale(0.95);
+        background: rgba(5, 5, 16, 0.95);
+    }
+}
+
+/* Very small screens */
+@media (max-width: 375px) {
+    .skills {
+        padding: 40px 12px;
+    }
+
+    .mobileSkillBadge {
+        padding: 10px 12px;
+        font-size: 0.7rem;
+    }
+
+    .mobileCategoryTitle {
+        font-size: 0.8rem;
+    }
+}

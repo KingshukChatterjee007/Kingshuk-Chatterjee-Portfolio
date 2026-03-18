@@ -1,0 +1,406 @@
+/* Horizontal Scroll Wrapper - Large height for scroll-driven animation */
+.projectsWrapper {
+    position: relative;
+    background: var(--bg-dark);
+    height: 1500vh;
+    /* Very large to prevent skipping cards during fast scroll */
+}
+
+.stickyContainer {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.sliderContainer {
+    width: 100%;
+    margin-top: 40px;
+    overflow: visible;
+    padding: 60px 0;
+    /* 3D Perspective for carousel effect */
+    perspective: 1500px;
+    perspective-origin: center center;
+}
+
+.slider {
+    display: flex;
+    gap: 40px;
+    padding-left: 5vw;
+    padding-right: 10vw;
+    /* Preserve 3D space for child transforms */
+    transform-style: preserve-3d;
+}
+
+/* Project Card - 3D Carousel Item */
+.projectCard {
+    min-width: 380px;
+    width: 380px;
+    flex-shrink: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s ease-out;
+    /* 3D Transform support */
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.projectCard:hover {
+    border-color: var(--primary);
+    box-shadow: var(--glow-primary);
+}
+
+/* Active Card - 3D Front with enhanced glow */
+.activeCard {
+    border: 2px solid var(--primary) !important;
+    box-shadow:
+        0 0 40px rgba(0, 255, 136, 0.5),
+        0 0 80px rgba(0, 255, 136, 0.3),
+        0 25px 50px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Spinner */
+.spinner {
+    display: inline-block;
+    margin-left: 10px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Project Image */
+.projectImageWrapper {
+    width: 100%;
+    height: 180px;
+    position: relative;
+    overflow: hidden;
+    background: #000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.projectImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+}
+
+/* 3D Image Carousel */
+.imageCarousel {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.carouselImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transform: rotateY(90deg) scale(0.8);
+    animation: carousel3D var(--animation-duration, 9s) infinite;
+    backface-visibility: hidden;
+}
+
+@keyframes carousel3D {
+
+    0%,
+    5% {
+        opacity: 0;
+        transform: rotateY(90deg) scale(0.8);
+    }
+
+    10%,
+    28% {
+        opacity: 1;
+        transform: rotateY(0deg) scale(1);
+    }
+
+    33%,
+    100% {
+        opacity: 0;
+        transform: rotateY(-90deg) scale(0.8);
+    }
+}
+
+.imageOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+    pointer-events: none;
+    z-index: 10;
+}
+
+.projectCard:hover .projectImage {
+    transform: scale(1.05);
+}
+
+/* Card Header - Terminal Style */
+.cardHeader {
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dots {
+    display: flex;
+    gap: 6px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff5f57;
+}
+
+.dot:nth-child(2) {
+    background: #febc2e;
+}
+
+.dot:nth-child(3) {
+    background: #28c840;
+}
+
+.cardPath {
+    flex: 1;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.cardLinks {
+    display: flex;
+    gap: 10px;
+}
+
+.cardLink {
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+    display: flex;
+}
+
+.cardLink:hover {
+    color: var(--primary);
+}
+
+/* Card Content */
+.cardContent {
+    padding: 24px;
+    /* Don't stretch - let content determine size */
+}
+
+.projectTitle {
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.projectDescription {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.projectTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    padding: 4px 10px;
+    background: rgba(0, 255, 136, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Card Footer */
+.cardFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 24px;
+    border-top: 1px solid var(--border-color);
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.projectMeta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.language {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.languageDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.stars,
+.forks {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.stars svg {
+    color: var(--warning);
+}
+
+.forks svg {
+    color: var(--secondary);
+}
+
+.viewProject {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    color: var(--primary);
+    font-weight: 500;
+    transition: var(--transition-fast);
+}
+
+.viewProject:hover {
+    gap: 10px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+
+    /* Disable scroll-jack, enable native swipe */
+    .projectsWrapper {
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+
+    .stickyContainer {
+        position: relative;
+        height: auto;
+        top: 0;
+        overflow: visible;
+        padding: 40px 0;
+    }
+
+    .sliderContainer {
+        width: 100vw;
+        margin-left: -1rem;
+        margin-right: -1rem;
+        padding: 20px 0;
+        overflow: visible;
+        /* Allow shadows to bleed */
+    }
+
+    .slider {
+        display: flex;
+        gap: 20px;
+        /* Padding calculation: (100vw - 75vw) / 2 = 12.5vw. 
+           Using 12.5vw ensures the first card is centered. 
+           The peeking happens naturally because the container is 100vw. */
+        padding: 40px 12.5vw;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        transform: none !important;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        touch-action: pan-x pan-y;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+    }
+
+    .slider::-webkit-scrollbar {
+        display: none;
+    }
+
+    .projectCard {
+        min-width: 75vw;
+        /* Reduced from 85vw */
+        width: 75vw;
+        max-width: 350px;
+        scroll-snap-align: center;
+        margin: 0;
+
+        opacity: 1 !important;
+        transform: none !important;
+        scale: 1 !important;
+        z-index: 1 !important;
+        filter: none !important;
+    }
+
+    /* Disable active state visual pop on mobile */
+    .activeCard {
+        transform: none !important;
+        border: 1px solid var(--border-color) !important;
+        box-shadow: none !important;
+    }
+
+    /* Standard hover/active for touch */
+    .projectCard:active {
+        transform: scale(0.98) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .projectCard {
+        min-width: 75vw !important;
+        width: 75vw !important;
+    }
+
+    .cardContent {
+        padding: 16px;
+    }
+
+    .projectTitle {
+        font-size: 0.95rem;
+    }
+}

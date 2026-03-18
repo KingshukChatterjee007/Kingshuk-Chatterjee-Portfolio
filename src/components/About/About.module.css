@@ -1,0 +1,448 @@
+.about {
+    position: relative;
+    background: var(--bg-dark);
+}
+
+.aboutGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: flex-start;
+    margin-bottom: 80px;
+}
+
+/* Terminal Side */
+.terminalWrapper {
+    position: relative;
+}
+
+.aboutTerminal {
+    box-shadow: var(--shadow-lg), 0 0 30px rgba(0, 255, 136, 0.05);
+}
+
+.outputSection {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 4px 12px;
+}
+
+.outputKey {
+    color: var(--secondary);
+}
+
+/* Experience Badge */
+.expBadge {
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+    /* Flush right */
+    background: var(--bg-card);
+    border: 1px solid var(--primary);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--shadow-md), 0 0 20px rgba(0, 255, 136, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.expNumber {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1;
+}
+
+.expLabel {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* Content Side */
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.bio {
+    margin-bottom: 16px;
+    max-width: 600px;
+    font-size: 0.92rem;
+    line-height: 1.7;
+}
+
+.bio strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* =============================================
+   Option 3: Floating Card with Glow Border
+   ============================================= */
+.bioFloatingCard {
+    position: relative;
+    margin-bottom: 8px;
+    padding: 3px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #00ff88, #00d4ff, #bd00ff, #00ff88);
+    background-size: 400% 400%;
+    animation: borderGlow 6s ease infinite, floatCard 4s ease-in-out infinite;
+    box-shadow:
+        0 0 20px rgba(0, 255, 136, 0.2),
+        0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.bioFloatingCard::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #00ff88, #00d4ff, #bd00ff, #00ff88);
+    background-size: 400% 400%;
+    animation: borderGlow 6s ease infinite;
+    z-index: -1;
+    filter: blur(12px);
+    opacity: 0.4;
+}
+
+.bioFloatingCard .bio {
+    position: relative;
+    background: rgba(10, 15, 25, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 14px;
+    padding: 24px;
+    margin: 0;
+    color: #ffd700;
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.bioFloatingCard .bio strong {
+    color: #ffd700;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+}
+
+@keyframes borderGlow {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+@keyframes floatCard {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+/* Highlights Grid */
+.highlightsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 12px 0;
+}
+
+/* Center last item if alone in row */
+.highlightsGrid>*:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    justify-self: center;
+}
+
+.highlightCard {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    padding: 12px 14px;
+    border-radius: var(--border-radius);
+    transition: var(--transition-normal);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.highlightCard:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--primary);
+}
+
+.highlightIcon {
+    color: var(--primary);
+    margin-top: 2px;
+}
+
+.highlightCard.secondary .highlightIcon {
+    color: var(--secondary);
+}
+
+.highlightCard.accent .highlightIcon {
+    color: var(--accent);
+}
+
+.highlightCard.warning .highlightIcon {
+    color: var(--warning);
+}
+
+.highlightContent h3,
+.highlightContent h4 {
+    font-size: 0.85rem;
+    margin-bottom: 2px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.highlightContent p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Achievements Section */
+.achievementsSection {
+    margin-top: 40px;
+    border-top: 1px solid var(--border-color);
+    padding-top: 60px;
+}
+
+.achievementsTitle {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    background: var(--gradient-cyber);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.achievementsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.achievementCard {
+    position: relative;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 0;
+    text-align: center;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+}
+
+.achievementCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    border-color: var(--primary);
+}
+
+/* Card Image */
+.cardImageWrapper {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background: #000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cardBg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1;
+    transition: transform 0.5s ease;
+}
+
+.achievementCard:hover .cardBg {
+    transform: scale(1.1);
+}
+
+.cardOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.5));
+}
+
+.achievementIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 155px;
+    /* Overlap image boundary */
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-color);
+    z-index: 10;
+    color: var(--text-primary);
+}
+
+.achievementInfo {
+    padding: 40px 20px 20px;
+    width: 100%;
+}
+
+.achievementInfo h4 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+
+.place {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.prize {
+    display: inline-block;
+    font-size: 0.85rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--primary);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+    .aboutGrid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .achievementsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Center Content on Mobile/Tablet */
+    .content {
+        align-items: center;
+        text-align: center;
+    }
+
+    .content :global(.section-header) {
+        text-align: center !important;
+        align-items: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .bio {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .highlightsGrid {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .highlightsGrid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns for compact view */
+        gap: 10px;
+    }
+
+    .highlightCard {
+        padding: 14px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .highlightIcon {
+        margin-top: 0;
+    }
+
+    .achievementsGrid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .expBadge {
+        right: 0;
+        bottom: -80px;
+        /* Push below terminal content to fix overlap */
+    }
+
+    .terminalWrapper {
+        margin-bottom: 60px;
+        /* Make space for the badge */
+    }
+}
+
+/* Very small screens */
+@media (max-width: 375px) {
+    .highlightsGrid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .highlightCard {
+        padding: 12px;
+    }
+
+    .highlightContent h4 {
+        font-size: 0.9rem;
+    }
+
+    .highlightContent p {
+        font-size: 0.8rem;
+    }
+
+    .achievementCard {
+        min-height: 280px;
+    }
+
+    .achievementInfo h4 {
+        font-size: 1rem;
+    }
+
+    .expNumber {
+        font-size: 1.6rem;
+    }
+}
