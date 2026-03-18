@@ -1,28 +1,34 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Cpu } from 'lucide-react'
-import SkillGraph from './SkillGraph'
+import SkillSolarSystem from './SkillSolarSystem'
 import styles from './Skills.module.css'
 
 // Skill data for mobile grid view
 const skillCategories = [
     {
-        id: 'security',
-        label: 'Cyber Security',
-        color: '#ffaa00',
-        skills: ['Pentesting', 'Web App Security', 'Network Security', 'Malware Analysis', 'Reverse Engineering', 'Burp Suite', 'Metasploit', 'Nmap', 'Wireshark', 'Nessus']
-    },
-    {
-        id: 'dev',
-        label: 'Development',
+        id: 'langs',
+        label: 'Languages',
         color: '#ff8800',
-        skills: ['Python', 'C++', 'Go', 'Bash', 'JavaScript', 'React', 'Node.js', 'SQL', 'Solidity']
+        skills: ['Python', 'JavaScript', 'C', 'HTML5', 'CSS3', 'SQL']
     },
     {
-        id: 'ops',
-        label: 'Ops & Tools',
+        id: 'frameworks',
+        label: 'Frameworks',
         color: '#ffd700',
-        skills: ['Linux', 'Git', 'Docker', 'Risk Management', 'Incident Response']
+        skills: ['Flutter', 'React', 'Node.js', 'Express', 'Flask', 'TensorFlow', 'Pandas', 'OpenCV']
+    },
+    {
+        id: 'ml',
+        label: 'Machine Learning',
+        color: '#ffaa00',
+        skills: ['XGBoost', 'CNN', 'LSTM', 'Feature Engineering', 'Time-Series Modeling', 'Model Training', 'Model Evaluation']
+    },
+    {
+        id: 'tools',
+        label: 'Tools',
+        color: '#ff6600',
+        skills: ['Figma', 'Adobe Suite', 'Blender', 'Power BI']
     }
 ]
 
@@ -43,8 +49,8 @@ const Skills = () => {
                     </p>
                 </div>
 
-                {/* Desktop: Complex Graph */}
-                <SkillGraph />
+                {/* Desktop: Complex Solar System */}
+                <SkillSolarSystem />
 
                 {/* Mobile: Simple Grid View */}
                 <div className={styles.mobileSkillsGrid}>

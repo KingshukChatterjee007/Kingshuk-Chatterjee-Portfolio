@@ -296,9 +296,6 @@ function Hero() {
     return (
         <section id="home" className={styles.hero}>
             <div className={styles.matrixBg}></div>
-            <div className={styles.glowOrb1}></div>
-            <div className={styles.glowOrb2}></div>
-            <div className="scanline"></div>
 
             <div className={`container ${styles.heroContainer}`}>
                 <motion.div
@@ -491,15 +488,6 @@ function Hero() {
                 </motion.div>
             </div>
 
-            <motion.div
-                className={styles.scrollIndicator}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.5 }}
-            >
-                <div className={styles.scrollLine}></div>
-                <span>Scroll</span>
-            </motion.div>
         </section>
     )
 }

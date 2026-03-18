@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion'
-import { useRef, useMemo, useState } from 'react'
+import { useRef, useMemo, useState, useEffect } from 'react'
 import styles from './Experience.module.css'
 
 // Icons

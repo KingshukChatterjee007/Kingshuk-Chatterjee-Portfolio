@@ -90,82 +90,114 @@ const AdvancedBackground = () => {
                 float lensing = 0.22 / (dist + 0.02);
                 vec2 warpedUV = uv * (1.0 - lensing);
                 float warpedDist = length(warpedUV);
+                
+                // --- COLORS (Defined early) ---
+                vec3 amber = vec3(1.0, 0.5, 0.1);
+                vec3 orange = vec3(1.0, 0.3, 0.05);
+                vec3 gold = vec3(1.0, 0.8, 0.4);
+                vec3 glowColor = vec3(1.0, 0.4, 0.1);
 
-                // 3. SINGULARITY
+                // 3. SINGULARITY (Event Horizon Shadow)
                 float singularity = smoothstep(0.24, 0.22, warpedDist);
                 
-                // 4. PHOTON RINGS (Multi-layered for depth)
-                float ring1 = smoothstep(0.225, 0.22, warpedDist) * smoothstep(0.21, 0.22, warpedDist);
-                float ring2 = smoothstep(0.218, 0.216, warpedDist * (1.0 + 0.05 * sin(angle * 3.0 + u_time))) * 0.5;
-                float ring = ring1 + ring2;
+                // 4. PHOTON RINGS (Plasma Energy Upgrade)
+                float ringAngle = angle + u_time * 0.1;
+                float plasmaNoise = snoise(vec2(ringAngle * 6.0, u_time * 0.4)) * 0.5 + 0.5;
+                float plasmaFlow = snoise(vec2(angle * 12.0 - u_time * 1.5, warpedDist * 20.0)) * 0.5 + 0.5;
+                
+                float ringPulse = 1.0 + plasmaNoise * 0.02;
+                
+                // Base plasma intensity
+                float ringBase = smoothstep(0.245, 0.238, warpedDist) * smoothstep(0.225, 0.238, warpedDist);
+                float ringHot = smoothstep(0.239, 0.237, warpedDist) * smoothstep(0.235, 0.237, warpedDist);
+                
+                // Color layers (Amber Core -> Gold Glow)
+                vec3 plasmaColor = mix(amber, gold, plasmaFlow);
+                vec3 ringEffect = (ringBase * plasmaColor * 3.0) + (ringHot * vec3(1.0, 0.98, 0.9) * 6.0);
+                
+                // Add "energetic" turbulence
+                ringEffect *= (0.8 + 0.4 * plasmaNoise * plasmaFlow);
+                
+                // Subtle high-speed sparkles on the ring
+                float sparkles = pow(plasmaFlow, 8.0) * ringBase * 4.0;
+                ringEffect += gold * sparkles;
 
-                // 4b. ORBITING DUST / SPARKLES
-                float particleGrid = 80.0;
-                vec2 pId = floor(uv * particleGrid);
-                float pHash = hash12(pId);
-                float pSpeed = pHash * 3.0 + 1.0;
-                float pOrbit = u_time * pSpeed + pHash * 10.0;
-                vec2 pPos = vec2(sin(pOrbit), cos(pOrbit)) * (0.3 + pHash * 1.5);
-                float particles = smoothstep(0.04, 0.0, length(uv - pPos)) * step(0.99, pHash);
-                particles *= 0.5 + 0.5 * sin(u_time * 10.0 + pHash * 100.0); // Twinkle
+                // 4b. COSMIC DUST MOTES (More visible, drifting particles)
+                float dustGrid = 12.0; 
+                vec2 dId = floor(uv * dustGrid + u_time * 0.05);
+                float dHash = hash12(dId);
+                float dOrbit = u_time * (dHash * 0.3 + 0.1);
+                vec2 dPos = vec2(sin(dOrbit + dHash * 10.0), cos(dOrbit * 0.6)) * (0.5 + dHash * 2.5);
+                float dustMotes = smoothstep(0.04, 0.0, length(uv - dPos)) * step(0.975, dHash); 
+                dustMotes *= 0.5 + 0.5 * sin(u_time * 3.0 + dHash * 50.0);
 
-                // 5. ACCRETION DISK (Volumetric / Wispy / Interstellar style)
+                // 5. ACCRETION DISK (Volumetric / Wispy)
                 float diskY = abs(warpedUV.y);
                 float diskX = abs(warpedUV.x);
                 
                 // Multi-layered noise for "smoky" texture
-                float n1 = noise(vec2(warpedUV.x * 2.0 - u_time * 0.2, warpedUV.y * 20.0));
-                float n2 = noise(vec2(warpedUV.x * 5.0 + u_time * 0.5, warpedUV.y * 50.0));
-                float n3 = noise(vec2(warpedUV.x * 15.0, warpedUV.y * 100.0));
+                float n1 = noise(vec2(warpedUV.x * 2.0 - u_time * 0.4, warpedUV.y * 30.0));
+                float n2 = noise(vec2(warpedUV.x * 8.0 + u_time * 0.8, warpedUV.y * 60.0));
+                float wisps = pow(abs(n1 * 0.7 + n2 * 0.3), 1.8);
                 
-                float wisps = pow(abs(n1 * 0.6 + n2 * 0.3 + n3 * 0.1), 1.5);
-                
-                // Main Horizontal Disk
-                float diskMaskFlat = smoothstep(0.12, 0.0, diskY) * smoothstep(3.0, 0.4, diskX);
-                float intensityFlat = wisps * diskMaskFlat * 2.5;
+                // Main Horizontal Disk (Thinner and more concentrated)
+                float diskMask = smoothstep(0.08, 0.0, diskY) * smoothstep(3.5, 0.4, diskX);
+                float diskIntensity = wisps * diskMask * 4.0;
 
-                // Accretion Ring (Lensed part)
-                float diskDist = length(uv * vec2(1.0, 3.8)); 
-                float diskMaskRing = smoothstep(0.48, 0.42, diskDist) * smoothstep(0.25, 0.38, diskDist);
-                float ringWisps = noise(vec2(atan(uv.y, uv.x) * 6.0 + u_time, diskDist * 30.0));
-                float intensityRing = pow(abs(ringWisps), 2.0) * diskMaskRing;
+                // Accretion Ring (Lensed part from behind)
+                float diskDist = length(uv * vec2(1.0, 4.0)); 
+                float diskMaskRing = smoothstep(0.5, 0.4, diskDist) * smoothstep(0.28, 0.4, diskDist);
+                float ringWisps = noise(vec2(atan(uv.y, uv.x) * 8.0 + u_time, diskDist * 40.0));
+                float intensityRing = pow(abs(ringWisps), 2.2) * diskMaskRing;
 
-                // 6. LENSING ARCS (The bent light from behind)
-                float arcTopDist = length(uv + vec2(0.0, 0.45)) - 0.7;
-                float arcTop = smoothstep(0.12, 0.0, abs(arcTopDist)) * smoothstep(0.5, 0.3, warpedDist);
-                float arcBotDist = length(uv - vec2(0.0, 0.4)) - 0.65;
-                float arcBot = smoothstep(0.1, 0.0, abs(arcBotDist)) * smoothstep(0.5, 0.32, warpedDist);
+                // 6. LENSING ARCS (Bent light from far side)
+                float arcTopDist = length(uv + vec2(0.0, 0.5)) - 0.75;
+                float arcTop = smoothstep(0.1, 0.0, abs(arcTopDist)) * smoothstep(0.6, 0.3, warpedDist);
+                float arcBotDist = length(uv - vec2(0.0, 0.45)) - 0.7;
+                float arcBot = smoothstep(0.08, 0.0, abs(arcBotDist)) * smoothstep(0.6, 0.35, warpedDist);
 
-                // 7. INTERSTELLAR AMBER COLORS
-                vec3 amber = vec3(1.0, 0.5, 0.1);    // Core amber
-                vec3 orange = vec3(1.0, 0.3, 0.05);  // Deep orange
-                vec3 gold = vec3(1.0, 0.8, 0.4);    // Highlight gold
-                vec3 glowColor = vec3(1.0, 0.4, 0.1);
+                // 7. VOLUMETRIC NEBULAE (Vibrant Background Upgrade)
+                float nebula1 = snoise(uv * 0.3 + u_time * 0.03) * 0.5 + 0.5;
+                float nebula2 = snoise(uv * 0.7 - u_time * 0.02) * 0.5 + 0.5;
+                float nebula3 = snoise(uv * 1.5 + u_time * 0.05) * 0.5 + 0.5;
+                
+                float nebulaIntensity = pow(nebula1 * nebula2, 1.8) * 0.6 + (nebula3 * 0.1);
+                vec3 nebulaColorLayer = mix(vec3(0.02, 0.0, 0.05), amber * 0.5, nebula1);
+                nebulaColorLayer = mix(nebulaColorLayer, orange * 0.4, nebula2);
+                nebulaColorLayer *= nebulaIntensity;
 
-                vec3 color = vec3(starFinal * 0.6); // Stars are slightly dimmer
+                vec3 color = vec3(starFinal * 0.65) + nebulaColorLayer;
                 
-                // Add Elements
-                color += ring * vec3(1.0, 0.95, 0.8) * 4.0;
-                color += particles * gold * 3.0 * (1.0 - smoothstep(0.0, 2.0, length(uv))); // Fade dust
+                // Layer 1: Background Elements (Masked by Singularity)
+                vec3 backElements = vec3(0.0);
+                backElements += ringEffect; // Multi-channel ring with shimmer
                 
-                // Add Accretion Disk (Amber Wisps)
-                color += mix(orange, gold, wisps) * intensityFlat * 3.5;
-                color += mix(orange, gold, ringWisps) * intensityRing * 2.0;
+                // Add a very soft glow around the ring
+                vec3 ringColor = vec3(1.0, 1.0, 0.95);
+                float ringGlow = smoothstep(0.4, 0.23, warpedDist) * 0.4;
+                backElements += ringColor * ringGlow * (0.8 + 0.2 * snoise(vec2(u_time * 0.1, angle)));
                 
-                // Add Lensing Arcs
-                color += arcTop * amber * 2.5 * wisps;
-                color += arcBot * amber * 1.8 * ringWisps;
+                backElements += dustMotes * gold * 4.0;
+                backElements += arcTop * amber * 3.0 * wisps;
+                backElements += arcBot * amber * 2.5 * ringWisps;
+                backElements += mix(orange, gold, ringWisps) * intensityRing * 2.5;
                 
-                // Global Accretion Glow (Bloom)
-                float bloom = smoothstep(0.8, 0.0, warpedDist) * 0.15;
+                // Apply Shadow
+                color += backElements * (1.0 - singularity);
+                
+                // Layer 2: Foreground Disk (Thinner and passes in front)
+                // We make it even thinner where it passes strictly in front to show the shadow
+                float frontDiskMask = smoothstep(0.04, 0.01, diskY) * smoothstep(3.0, 0.0, diskX);
+                vec3 frontDisk = mix(orange, gold, wisps) * frontDiskMask * wisps * 5.0;
+                color += frontDisk;
+                
+                // 10. BLOOM & DOPPLER
+                float bloom = smoothstep(0.9, 0.0, warpedDist) * 0.2;
                 color += glowColor * bloom;
 
-                // Doppler shift (Left side is brighter/bluer-shifted, Right is redder/dimmer)
-                float doppler = smoothstep(-2.0, 2.0, uv.x);
-                color *= (0.3 + 0.7 * (1.0 - doppler));
-
-                // Final Singularity Shadow
-                color *= (1.0 - singularity);
+                // Doppler shift (Left side much brighter)
+                float doppler = smoothstep(-1.5, 1.5, uv.x);
+                color *= (0.2 + 0.8 * pow(1.0 - doppler, 1.5));
 
                 gl_FragColor = vec4(color, 1.0);
             }

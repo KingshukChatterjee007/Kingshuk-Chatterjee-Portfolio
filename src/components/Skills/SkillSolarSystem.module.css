@@ -1,0 +1,140 @@
+.container {
+    position: relative;
+    width: 100%;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+    margin-top: 40px;
+}
+
+/* The Sun (Center) */
+.sun {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle, #ffaa00 0%, #ff6600 70%, transparent 100%);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 0 0 60px rgba(255, 170, 0, 0.4);
+    text-align: center;
+    padding: 20px;
+}
+
+.sunName {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.8), 0 0 20px #ffaa00;
+}
+
+/* Orbit Lines */
+.orbitLine {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px dashed rgba(255, 170, 0, 0.15);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Planet System (Container that rotates) */
+.planetSystem {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+}
+
+.planetWrapper {
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.planet {
+    width: 120px;
+    height: 120px;
+    background: rgba(13, 13, 20, 0.9);
+    border: 2px solid var(--planet-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 5;
+    box-shadow: 0 0 20px var(--planet-shadow);
+}
+
+.planet:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px var(--planet-shadow);
+    background: var(--planet-color);
+}
+
+.planet:hover .planetLabel {
+    color: #fff;
+}
+
+.planetLabel {
+    color: var(--planet-color);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 10px;
+    pointer-events: none;
+}
+
+/* Moon System (Orbiting the planet) */
+.moonSystem {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+}
+
+.moonWrapper {
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.moon {
+    padding: 4px 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid var(--planet-color);
+    border-radius: 20px;
+    color: #fff;
+    font-size: 0.65rem;
+    font-family: 'JetBrains Mono', monospace;
+    white-space: nowrap;
+    opacity: 0.1;
+    /* High speed = motion blur effect or just faintness */
+    transition: opacity 0.3s ease;
+}
+
+/* When planet is hovered, show all moons clearly */
+.planetSystem:hover .moon {
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        height: 600px;
+        transform: scale(0.8);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        display: none;
+        /* Hide on mobile in favor of grid */
+    }
+}
