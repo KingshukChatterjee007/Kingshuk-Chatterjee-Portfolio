@@ -5,18 +5,18 @@ const Background = () => {
     return (
         <div className={styles.backgroundContainer}>
             <div className={styles.blackholeWrapper}>
-                {/* 1. TOP LENSING RING (Warped behind) */}
+                {/* 1. TOP LENSING RING */}
                 <motion.div 
-                    className={styles.lensingTop}
-                    animate={{ rotateZ: 360 }}
-                    transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                    className={styles.diskWarpTop}
+                    animate={{ rotateZ: [45, 55, 45], scale: [1, 1.02, 1] }}
+                    transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
                 />
 
-                {/* 2. BOTTOM LENSING RING (Warped behind) */}
+                {/* 2. BOTTOM LENSING RING */}
                 <motion.div 
-                    className={styles.lensingBottom}
-                    animate={{ rotateZ: -360 }}
-                    transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+                    className={styles.diskWarpBottom}
+                    animate={{ rotateZ: [45, 35, 45], scale: [1, 1.05, 1] }}
+                    transition={{ duration: 40, repeat: Infinity, ease: "easeInOut" }}
                 />
 
                 {/* 3. PHOTON RING */}
@@ -25,76 +25,94 @@ const Background = () => {
                 {/* 4. THE SINGULARITY */}
                 <div className={styles.singularity}></div>
 
-                {/* 5. FRONT ACCRETION DISK (Rotating Plasma) */}
+                {/* 5. FRONT ACCRETION DISK */}
                 <motion.div 
                     className={styles.accretionDiskFront}
                     animate={{ 
                         opacity: [0.8, 1, 0.8],
-                        scaleX: [0.98, 1.02, 0.98]
+                        filter: ['blur(10px)', 'blur(14px)', 'blur(10px)']
                     }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                 />
 
-                {/* Rotating Plasma Detail Layer */}
                 <motion.div 
-                    style={{
-                        position: 'absolute',
-                        width: '900px',
-                        height: '2px',
-                        background: 'repeating-linear-gradient(90deg, transparent 0, #fff 100px, transparent 200px)',
-                        zIndex: 115,
-                        filter: 'blur(2px)',
-                        opacity: 0.4
-                    }}
-                    animate={{ backgroundPosition: ['0px 0px', '400px 0px'] }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                    className={styles.accretionDiskRings}
+                    animate={{ rotateZ: 360 }}
+                    transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
+                />
+
+                <motion.div 
+                    className={styles.diskDetail}
+                    animate={{ rotateZ: -360 }}
+                    transition={{ duration: 180, repeat: Infinity, ease: "linear" }}
                 />
             </div>
 
-            {/* Plasma Streaks Spiraling In */}
+            {/* Planets */}
+            <div className={styles.planetsLayer}>
+                <motion.div className={`${styles.planet} ${styles.planet1}`} 
+                    animate={{ y: [0, -10, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }} />
+                <motion.div className={`${styles.planet} ${styles.planet2}`} 
+                    animate={{ y: [0, 15, 0] }} transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }} />
+                <motion.div className={`${styles.planet} ${styles.planet3}`} 
+                    animate={{ y: [0, -20, 0] }} transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }} />
+            </div>
+
+            {/* Plasma Streaks */}
             <div className={styles.plasmaLayer}>
                 {[...Array(60)].map((_, i) => (
                     <motion.div
                         key={`streak-${i}`}
                         className={styles.streak}
                         initial={{ 
-                            x: '50vw', 
+                            x: '60vw', 
                             y: '50vh', 
                             rotate: Math.random() * 360,
                             scale: 0,
                             opacity: 0 
                         }}
                         animate={{
-                            x: ['50vw', `${50 + (Math.cos(i) * 30)}vw`],
-                            y: ['50vh', `${50 + (Math.sin(i) * 30)}vh`],
+                            x: ['60vw', `${60 + (Math.cos(i) * 60)}vw`],
+                            y: ['50vh', `${60 + (Math.sin(i) * 60)}vh`],
                             rotate: [0, 180, 360],
-                            scale: [0, 1.5, 0.2],
-                            opacity: [0, 1, 0]
+                            scale: [0, 2, 0],
+                            opacity: [0, 0.9, 0]
                         }}
                         transition={{
-                            duration: 3 + Math.random() * 4,
+                            duration: 4 + Math.random() * 8,
                             repeat: Infinity,
-                            delay: Math.random() * 8,
+                            delay: Math.random() * 10,
                             ease: "easeInOut"
                         }}
                     />
                 ))}
             </div>
 
+            {/* Wireframe grids based on the image */}
+            <div className={styles.gridLayer}>
+                <div className={styles.gridSphere}>
+                    <motion.div className={styles.sphereItem} animate={{rotateZ: 360}} transition={{ duration: 200, repeat: Infinity, ease: "linear"}} />
+                    <motion.div className={styles.sphereItem} animate={{rotateZ: -360}} transition={{ duration: 250, repeat: Infinity, ease: "linear"}} />
+                    <motion.div className={styles.sphereItem} animate={{rotateZ: 360}} transition={{ duration: 180, repeat: Infinity, ease: "linear"}} />
+                </div>
+                <div className={styles.gravityFunnel} />
+            </div>
+
             {/* Background Stars */}
             <div className={styles.stars}>
-                {[...Array(100)].map((_, i) => (
+                {[...Array(150)].map((_, i) => (
                     <div
                         key={`star-${i}`}
                         style={{
                             position: 'absolute',
                             left: `${Math.random() * 100}%`,
                             top: `${Math.random() * 100}%`,
-                            width: '1px',
-                            height: '1px',
-                            background: '#fff',
-                            opacity: Math.random() * 0.7,
-                            borderRadius: '50%'
+                            width: Math.random() > 0.8 ? '2px' : '1px',
+                            height: Math.random() > 0.8 ? '2px' : '1px',
+                            background: Math.random() > 0.5 ? '#fff' : '#88ccff',
+                            opacity: Math.random() * 0.8,
+                            borderRadius: '50%',
+                            boxShadow: Math.random() > 0.9 ? '0 0 5px #fff' : 'none'
                         }}
                     />
                 ))}
