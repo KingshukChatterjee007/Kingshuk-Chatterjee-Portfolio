@@ -47,7 +47,7 @@ const socialLinks = [
     },
     {
         name: 'LinkedIn',
-        url: 'https://www.linkedin.com/in/kingshuk-chatterjee', // Update this if your LinkedIn URL is different
+        url: 'https://www.linkedin.com/in/kingshuk-chatterjee-124101286/', // Updated link
         icon: <LinkedIn />,
         color: 'secondary'
     },

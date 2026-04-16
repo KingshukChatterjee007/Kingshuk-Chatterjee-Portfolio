@@ -37,7 +37,7 @@ const footerLinks = [
 
 const socialIcons = [
     { icon: <Github />, url: 'https://github.com/KingshukChatterjee007', label: 'GitHub' },
-    { icon: <LinkedIn />, url: 'https://www.linkedin.com/in/kingshuk-chatterjee', label: 'LinkedIn' },
+    { icon: <LinkedIn />, url: 'https://www.linkedin.com/in/kingshuk-chatterjee-124101286/', label: 'LinkedIn' },
     { icon: <Mail />, url: 'mailto:kingshuk.chatterjee770@gmail.com', label: 'Email' },
 ]
 
