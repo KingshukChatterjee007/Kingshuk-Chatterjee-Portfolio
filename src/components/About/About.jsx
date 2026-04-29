@@ -85,7 +85,7 @@ function About() {
                                     <span className={styles.outputKey}>Role:</span> Software Developer & Designer<br />
                                     <span className={styles.outputKey}>Education:</span> B.Tech Computer Science<br />
                                     <span className={styles.outputKey}>University:</span> KIIT University<br />
-                                    <span className={styles.outputKey}>Resume:</span> <a href="/Resume.pdf" download="Kingshuk_Chatterjee_Resume.pdf" className={styles.terminalLink}>Download PDF</a><br />
+                                    <span className={styles.outputKey}>Resume:</span> <a href="/Kingshuk_Resume.pdf" download="Kingshuk_Chatterjee_Resume.pdf" className={styles.terminalLink}>Download PDF</a><br />
 
                                 </span>
                                 <br />

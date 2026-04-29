@@ -384,7 +384,7 @@ function Hero() {
                         </motion.a>
 
                         <motion.a
-                            href="/Resume.pdf"
+                            href="/Kingshuk_Resume.pdf"
                             download="Kingshuk_Chatterjee_Resume.pdf"
                             className={`btn ${styles.btnResume}`}
                             whileHover={{ scale: 1.02 }}
